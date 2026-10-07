@@ -15,7 +15,7 @@ test('home is a real static document with working profile links and artwork', as
   expect(await response.text()).toContain('Master of Applied Science, Biomedical Engineering');
   await page.goto('./');
   await expect(page.getByRole('heading', { name: 'Experience', exact: true })).toBeVisible();
-  await expect(page.getByRole('heading', { name: 'Education & awards' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Education', exact: true })).toBeVisible();
   await expect(page.getByRole('link', { name: 'doi:10.3390/cancers17182991' })).toHaveAttribute('href', 'https://doi.org/10.3390/cancers17182991');
   await expect(page.getByRole('link', { name: 'GitHub', exact: true })).toHaveAttribute('href', 'https://github.com/MikeDiaz1');
   const images = page.locator('.project-card img');

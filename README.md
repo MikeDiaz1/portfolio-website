@@ -40,7 +40,7 @@ Most changes only need two files:
 
 | File | What to change |
 | --- | --- |
-| `src/lib/data/profile.ts` | Name, tagline, profile links, portrait, experience, education, awards, and publications |
+| `src/lib/data/profile.ts` | Name, tagline, profile links, portrait, experience, education, awards, publications, and posters |
 | `src/lib/data/projects.ts` | Project order, slugs, summaries, images, descriptions, topics, resource links |
 | `src/app.css` | Colours, typography, spacing, and responsive layout |
 | `static/` | Images, favicon, and an optional résumé PDF |
@@ -58,11 +58,13 @@ Add `static/resume.pdf` before setting that link. An empty destination renders a
 
 For a portrait, add your image to `static/images/` and set `profile.avatar` to, for example, `'images/portrait.jpg'`. An empty value displays the silhouette.
 
-### Experience, education, and publications
+### Experience, education, publications, and posters
 
-Edit the `experience`, `education`, and `publications` arrays in `src/lib/data/profile.ts`. Work entries include dates, location, work arrangement, employment type, and a `bullets` array for responsibilities or achievements. Empty bullet arrays render without a list.
+Edit the `experience`, `education`, `publications`, and `posterPresentations` arrays in `src/lib/data/profile.ts`. Work entries include dates, location, work arrangement, employment type, and a `bullets` array for responsibilities or achievements. Set `organisationUrl` to a full URL to make the company name clickable; leave it empty for plain text.
 
-Each work entry also has a `logo` field. Add a company logo to `static/images/companies/` and set its path, for example `images/companies/ubc.svg`. Empty logo fields display a compact initials placeholder. Publication DOI links are generated from each entry's `doi` value.
+Both work and education entries have `logo`, `initials`, and `bullets` fields. Add a company or university logo to `static/images/` and set its path, for example `images/ubc.svg`. Empty logo fields display the initials. Each string in `bullets` becomes a separate bullet; use `\n` within a string for an explicit line break. Empty arrays render without a list.
+
+Publication DOI links are generated from each entry's `doi` value. To add posters, uncomment the example in `posterPresentations` and supply a `title`, `event`, and `date`. Optional fields are `authors`, `location`, and `href`. The link can be a full URL or a path such as `posters/my-poster.pdf` for a file in `static/`. The Poster presentations subsection appears below publications when the array contains entries.
 
 ### Projects
 

@@ -1,7 +1,9 @@
 <script lang="ts">
   import { asset } from '$app/paths';
   import type { AssetPath } from '$app/types';
-  import { experience, education, publications, profile } from '#lib/data/profile.ts';
+  import { experience, education, publications, posterPresentations, profile } from '#lib/data/profile.ts';
+
+  const posterHref = (href: string) => /^(?:[a-z][a-z\d+.-]*:|\/\/)/i.test(href) ? href : asset(href as AssetPath);
 </script>
 
 <svelte:head>
@@ -32,7 +34,13 @@
             </div>
             <div>
               <h3>{entry.title}</h3>
-              <p class="work-organisation">{entry.organisation}<span class="employment-type"> · {entry.employment}</span></p>
+              <p class="work-organisation">
+                {#if entry.organisationUrl}
+                  <a href={entry.organisationUrl}>{entry.organisation}</a>
+                {:else}
+                  {entry.organisation}
+                {/if}<span class="employment-type"> · {entry.employment}</span>
+              </p>
             </div>
           </div>
           {#if entry.bullets.length}
@@ -47,20 +55,38 @@
   </section>
 
   <section class="resume-section" aria-labelledby="education-heading">
-    <h2 class="section-label" id="education-heading">Education &amp; awards</h2>
-    <ul class="education-list">
+    <h2 class="section-label" id="education-heading">Education</h2>
+    <ul class="work-timeline education-list">
       {#each education as entry}
-        <li>
-          <div class="education-heading"><h3>{entry.degree}</h3><span>{entry.date}</span></div>
-          <p>{entry.institution}<span class="education-distinction"> · {entry.distinction}</span></p>
-          {#if entry.awards}<p class="education-awards">{entry.awards}</p>{/if}
+        <li class="work-entry">
+          <div class="work-meta"><span class="work-date">{entry.date}</span></div>
+          <div class="work-content">
+            <div class="work-heading">
+              <div class="company-logo" aria-hidden="true">
+                {#if entry.logo}
+                  <img src={asset(entry.logo as AssetPath)} alt="" width="40" height="40" />
+                {:else}
+                  <span>{entry.initials}</span>
+                {/if}
+              </div>
+              <div>
+                <h3>{entry.degree}</h3>
+                <p class="work-organisation">{entry.institution}</p>
+              </div>
+            </div>
+            {#if entry.bullets.length}
+              <ul class="work-bullets">
+                {#each entry.bullets as bullet}<li>{bullet}</li>{/each}
+              </ul>
+            {/if}
+          </div>
         </li>
       {/each}
     </ul>
   </section>
 
   <section class="resume-section" aria-labelledby="publications-heading">
-    <h2 class="section-label" id="publications-heading">Selected publications</h2>
+    <h2 class="section-label" id="publications-heading">Publications</h2>
     <ol class="publication-list">
       {#each publications as publication}
         <li>
@@ -69,5 +95,19 @@
         </li>
       {/each}
     </ol>
+    {#if posterPresentations.length}
+      <section class="poster-section" aria-labelledby="posters-heading">
+        <h3 class="section-label" id="posters-heading">Poster presentations</h3>
+        <ol class="publication-list">
+          {#each posterPresentations as poster}
+            <li>
+              <p>{#if poster.authors}<span class="publication-authors">{poster.authors}</span> {/if}{poster.title}</p>
+              <p class="poster-event"><cite>{poster.event}</cite> · {poster.date}{#if poster.location} · {poster.location}{/if}</p>
+              {#if poster.href}<a href={posterHref(poster.href)} aria-label={'View poster: ' + poster.title}>View poster ↗</a>{/if}
+            </li>
+          {/each}
+        </ol>
+      </section>
+    {/if}
   </section>
 </div>

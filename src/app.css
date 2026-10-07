@@ -2,7 +2,7 @@
   font-family: Arial, Helvetica, sans-serif;
   font-size: 14px;
   color: #101316;
-  background: #fcfbf7;
+  background: #ffffff;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -44,7 +44,7 @@ img { max-width: 100%; }
 .profile-header { grid-column: 1 / -1; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 20px 28px; min-width: 0; }
 .identity { display: flex; align-items: center; gap: 22px; color: var(--ink); }
 .identity:hover { color: var(--green); }
-.avatar { width: 64px; height: 64px; flex: 0 0 64px; overflow: hidden; border-radius: 50%; }
+.avatar { width: 80px; height: 80px; flex: 0 0 80px; overflow: hidden; border-radius: 50%; }
 .avatar img { width: 100%; height: 100%; object-fit: cover; }
 .identity-copy { display: grid; gap: 5px; }
 .profile-name { font-family: var(--serif); font-size: 30px; line-height: 1.1; letter-spacing: -0.6px; }
@@ -60,32 +60,32 @@ a.profile-link:hover span { text-decoration: underline; text-underline-offset: 5
 h1 { font-size: 38px; line-height: 1.15; letter-spacing: -1px; }
 
 /* Compact resume rows: date/location column, then logo, role and optional bullets. */
-.section-label { font: 600 11px/1.5 Arial, Helvetica, sans-serif; text-transform: uppercase; letter-spacing: 1.35px; padding-bottom: 9px; border-bottom: 1px solid var(--line); }
+.section-label { font: 600 11px/1.5 Arial, Helvetica, sans-serif; text-transform: uppercase; letter-spacing: 1.35px; padding-bottom: 7px; border-bottom: 1px solid var(--line); }
 .work-timeline { list-style: none; padding: 0; margin: 0; }
-.work-entry { display: grid; grid-template-columns: 164px minmax(0, 1fr); gap: 22px; padding: 18px 0; border-bottom: 1px solid #e0e0da; }
+.work-entry { display: grid; grid-template-columns: 164px minmax(0, 1fr); gap: 22px; padding: 13px 0; border-bottom: 1px solid #e0e0da; }
 .work-entry:last-child { border-bottom: 0; }
-.work-meta { display: flex; flex-direction: column; gap: 4px; padding-top: 2px; }
+.work-meta { display: flex; flex-direction: column; gap: 2px; }
 .work-date { font: 12px/1.55 'Courier New', Courier, monospace; color: var(--ink); }
 .work-location, .work-arrangement { font-size: 10px; line-height: 1.5; text-transform: uppercase; letter-spacing: 0.6px; color: var(--muted); }
-.work-location { margin-top: 4px; }
+.work-location { margin-top: 2px; }
 .work-content { min-width: 0; }
 .work-heading { display: flex; align-items: flex-start; gap: 13px; }
+/* Offset the font's top leading so the visible title aligns with the logo. */
+.work-heading > div:last-child { min-width: 0; margin-top: -3px; }
 .company-logo { display: grid; place-items: center; width: 40px; height: 40px; flex: 0 0 40px; background: #edf1ed; border: 1px solid #dfe5df; border-radius: 5px; color: var(--green); font-size: 11px; font-weight: 700; letter-spacing: 0.3px; overflow: hidden; }
 .company-logo img { width: 100%; height: 100%; object-fit: contain; background: white; }
-.work-heading h3 { font: 600 17px/1.35 Arial, Helvetica, sans-serif; letter-spacing: -0.25px; }
-.work-organisation { color: var(--green); font-size: 13px; line-height: 1.55; margin-top: 3px; }
+.work-heading h3 { font: 600 17px/1.25 Arial, Helvetica, sans-serif; letter-spacing: -0.25px; }
+.work-organisation { color: var(--green); font-size: 13px; line-height: 1.45; margin-top: 1px; }
+.work-organisation a { text-decoration: underline; text-underline-offset: 3px; text-decoration-color: #a5bcb1; }
 .employment-type { color: var(--muted); font-size: 12px; }
-.work-bullets { margin: 9px 0 0 53px; padding: 0 0 0 15px; color: var(--muted); font-size: 13px; line-height: 1.6; }
-.work-bullets li + li { margin-top: 5px; }
+.work-bullets { margin: 6px 0 0 53px; padding: 0 0 0 15px; color: var(--muted); font-size: 13px; line-height: 1.5; }
+.work-bullets li { white-space: pre-line; }
+.work-bullets li + li { margin-top: 3px; }
 .work-bullets li::marker { color: var(--green); }
-.resume-section { margin-top: 22px; }
-.education-list { list-style: none; padding: 0; margin: 12px 0 0; display: grid; gap: 13px; }
-.education-heading { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; }
-.education-heading h3 { font: 600 14px/1.5 Arial, Helvetica, sans-serif; }
-.education-heading > span { flex-shrink: 0; font-size: 12px; color: var(--muted); }
-.education-list p { font-size: 13px; line-height: 1.6; margin-top: 2px; }
-.education-distinction, .education-awards { color: var(--muted); }
-.publication-list { list-style: none; padding: 0; margin: 12px 0 0; display: grid; gap: 12px; font-size: 13px; line-height: 1.65; }
+.resume-section { margin-top: 16px; }
+.poster-section { margin-top: 16px; }
+.poster-event { color: var(--muted); }
+.publication-list { list-style: none; padding: 0; margin: 10px 0 0; display: grid; gap: 10px; font-size: 13px; line-height: 1.55; }
 .publication-authors { color: var(--muted); }
 .publication-list a { font-size: 12px; overflow-wrap: anywhere; }
 .publication-list a:hover { text-decoration: underline; text-underline-offset: 3px; }
@@ -134,7 +134,6 @@ h1 { font-size: 38px; line-height: 1.15; letter-spacing: -1px; }
   .work-entry { grid-template-columns: 142px minmax(0, 1fr); gap: 16px; }
   .work-heading h3 { font-size: 16px; }
   .employment-type { display: block; }
-  .education-heading { flex-wrap: wrap; gap: 2px 12px; }
   .project-card-title { flex-wrap: wrap; gap: 4px 8px; }
 }
 @media (max-width: 900px) {
@@ -157,15 +156,12 @@ h1 { font-size: 38px; line-height: 1.15; letter-spacing: -1px; }
   .profile-link { font-size: 15px; gap: 7px; }
   .profile-link svg { width: 18px; height: 18px; }
   .nav-divider { margin: 0; height: 20px; }
-  .work-entry { grid-template-columns: 1fr; gap: 12px; padding-block: 18px; }
+  .work-entry { grid-template-columns: 1fr; gap: 10px; padding-block: 13px; }
   .work-meta { flex-direction: row; flex-wrap: wrap; align-items: baseline; gap: 3px 10px; padding: 0; }
   .work-date { flex-basis: 100%; }
   .work-location { margin: 0; }
   .work-heading h3 { font-size: 16px; }
   .employment-type { display: block; }
-  .work-bullets { margin-top: 8px; }
-  .education-heading { flex-direction: column; align-items: flex-start; gap: 3px; }
-  .education-distinction { display: block; }
   .project-list { grid-template-columns: 1fr; }
   .thumbnail { height: auto; aspect-ratio: 3.6 / 1; }
   .project-hero img { aspect-ratio: 2.2 / 1; }
