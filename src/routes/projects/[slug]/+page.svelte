@@ -14,7 +14,7 @@
 
 {#key data.project.slug}
   <article class="project-detail" aria-labelledby="project-title">
-    <a class="back-link" href={resolve('/')}><Icon name="back" size={20} />Work &amp; education</a>
+    <a class="back-link" href={resolve('/')}><Icon name="back" size={20} />Back to overview</a>
     <p class="eyebrow">{data.project.category}</p>
     <h1 id="project-title">{data.project.title}</h1>
     <p class="project-lead">{data.project.summary}</p>

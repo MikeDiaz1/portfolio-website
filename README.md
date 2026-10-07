@@ -1,10 +1,10 @@
 # Michael Diaz-Stewart — Portfolio
 
-A personal portfolio for medical-image machine learning, software, and interactive projects. The home page is a work and education timeline; selecting a project opens its story in the main view while the project list stays alongside it.
+A personal portfolio for medical-image machine learning, software, and interactive projects. The home page brings together professional experience, education, awards, and selected publications; selecting a project opens its story in the main view while the project list stays alongside it.
 
 Built with **Svelte 5, SvelteKit 3, and TypeScript**, with fully static output for GitHub Pages.
 
-![Portfolio preview with a work and education timeline and project sidebar](docs/preview.jpg)
+![Portfolio preview with work experience, education, publications, and a project sidebar](docs/preview.jpg)
 
 ## Explore
 
@@ -40,7 +40,7 @@ Most changes only need two files:
 
 | File | What to change |
 | --- | --- |
-| `src/lib/data/profile.ts` | Name, tagline, profile links, portrait, work and education |
+| `src/lib/data/profile.ts` | Name, tagline, profile links, portrait, experience, education, awards, and publications |
 | `src/lib/data/projects.ts` | Project order, slugs, summaries, images, descriptions, topics, resource links |
 | `src/app.css` | Colours, typography, spacing, and responsive layout |
 | `static/` | Images, favicon, and an optional résumé PDF |
@@ -57,6 +57,12 @@ Set the destinations in `profile.links`. External URLs, `mailto:` links, and `te
 Add `static/resume.pdf` before setting that link. An empty destination renders a muted, unavailable label. Resume and Contact start this way until real destinations are supplied.
 
 For a portrait, add your image to `static/images/` and set `profile.avatar` to, for example, `'images/portrait.jpg'`. An empty value displays the silhouette.
+
+### Experience, education, and publications
+
+Edit the `experience`, `education`, and `publications` arrays in `src/lib/data/profile.ts`. Work entries include dates, location, work arrangement, employment type, and a `bullets` array for responsibilities or achievements. Empty bullet arrays render without a list.
+
+Each work entry also has a `logo` field. Add a company logo to `static/images/companies/` and set its path, for example `images/companies/ubc.svg`. Empty logo fields display a compact initials placeholder. Publication DOI links are generated from each entry's `doi` value.
 
 ### Projects
 
@@ -128,7 +134,7 @@ build/
 
 Direct links and refreshes are served as real HTML documents. No hash router or redirect workaround is required. A custom static 404 page handles missing addresses. This follows [SvelteKit's static deployment guidance](https://svelte.dev/docs/kit/adapter-static).
 
-On wide screens the main content and project sidebar scroll independently. The sidebar keeps its scroll position when switching projects. On smaller screens the layout becomes a single column, with projects below the main content. Keyboard focus styles, a skip link, active-project announcements, and reduced-motion support are included.
+On wide screens the layout sits in a centered container with a maximum width of 1240px. The fixed profile header spans both columns, with a wider resume panel and a narrow, independently scrolling project list below. The list keeps its scroll position when switching projects. On smaller screens the layout becomes a single column, with projects below the main content. Keyboard focus styles, a skip link, active-project announcements, and reduced-motion support are included.
 
 ## Browser tests
 

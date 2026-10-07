@@ -6,10 +6,7 @@
 </script>
 
 <aside class="project-sidebar" aria-labelledby="projects-heading" id="projects">
-  <div class="sidebar-heading">
-    <h2 id="projects-heading">Projects</h2>
-    <p>Select a project to explore.</p>
-  </div>
+  <h2 id="projects-heading" class="sr-only">Projects</h2>
   <nav class="project-list" aria-label="Projects">
     {#each projects as project}
       {@const selected = page.params.slug === project.slug}

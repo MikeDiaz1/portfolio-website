@@ -10,7 +10,7 @@
 </script>
 
 <header class="profile-header">
-  <a class="identity" href={resolve('/')} aria-label={profile.name + ' — work and education'}>
+  <a class="identity" href={resolve('/')} aria-label={profile.name + ' — overview'}>
     <span class="avatar">
       {#if profile.avatar}
         <img src={asset(profile.avatar as AssetPath)} alt="" width="82" height="82" />

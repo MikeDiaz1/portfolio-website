@@ -22,11 +22,9 @@
 
 <a class="skip-link" href="#main-content">Skip to main content</a>
 <div class="portfolio-shell">
-  <div class="main-panel">
-    <ProfileHeader />
-    <main id="main-content" class="main-content" tabindex="-1" bind:this={main}>
-      {@render children()}
-    </main>
-  </div>
+  <ProfileHeader />
+  <main id="main-content" class="main-content" tabindex="-1" bind:this={main}>
+    {@render children()}
+  </main>
   <ProjectSidebar />
 </div>

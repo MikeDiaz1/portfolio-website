@@ -12,9 +12,11 @@ const examples = [
 test('home is a real static document with working profile links and artwork', async ({ page, request }) => {
   const response = await request.get('./');
   expect(response.status()).toBe(200);
-  expect(await response.text()).toContain('MASc Biomedical Engineering');
+  expect(await response.text()).toContain('Master of Applied Science, Biomedical Engineering');
   await page.goto('./');
-  await expect(page.getByRole('heading', { name: 'Work & education' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Experience', exact: true })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Education & awards' })).toBeVisible();
+  await expect(page.getByRole('link', { name: 'doi:10.3390/cancers17182991' })).toHaveAttribute('href', 'https://doi.org/10.3390/cancers17182991');
   await expect(page.getByRole('link', { name: 'GitHub', exact: true })).toHaveAttribute('href', 'https://github.com/MikeDiaz1');
   const images = page.locator('.project-card img');
   await expect(images).toHaveCount(4);
@@ -39,11 +41,11 @@ test('project links update the main view, URL, title and browser history', async
   await page.goBack();
   await expect(page.getByRole('heading', { level: 1 })).toHaveText('Medical-image AI');
   await page.goBack();
-  await expect(page.getByRole('heading', { level: 1 })).toHaveText('Work & education');
+  await expect(page.getByRole('heading', { level: 1 })).toHaveText('Experience, education & publications');
   await page.goForward();
   await expect(page.getByRole('heading', { level: 1 })).toHaveText('Medical-image AI');
-  await page.getByRole('link', { name: 'Work & education', exact: true }).click();
-  await expect(page.getByRole('heading', { level: 1 })).toHaveText('Work & education');
+  await page.getByRole('link', { name: 'Back to overview', exact: true }).click();
+  await expect(page.getByRole('heading', { level: 1 })).toHaveText('Experience, education & publications');
   expect(errors).toEqual([]);
 });
 
@@ -63,10 +65,12 @@ for (const project of examples) {
 test('sidebar scrolls independently and keeps its position during navigation', async ({ page }) => {
   await page.setViewportSize({ width: 1536, height: 720 });
   await page.goto('./');
-  const sidebar = page.locator('.project-sidebar');
+  const sidebar = page.getByRole('navigation', { name: 'Projects', exact: true });
+  const headerBefore = await page.locator('.profile-header').boundingBox();
   await sidebar.evaluate((element) => { element.scrollTop = element.scrollHeight; });
   const before = await sidebar.evaluate((element) => element.scrollTop);
   expect(before).toBeGreaterThan(0);
+  expect(await page.locator('.profile-header').boundingBox()).toEqual(headerBefore);
   expect(await page.locator('main').evaluate((element) => element.scrollTop)).toBe(0);
   await sidebar.getByRole('link', { name: /Further Down, Still/ }).click();
   await expect(page.getByRole('heading', { level: 1 })).toHaveText('Further Down, Still');
@@ -84,15 +88,15 @@ test('mobile layout has no horizontal overflow and opens projects at the top', a
   await expect(page.getByRole('heading', { level: 1 })).toHaveText('Nostalgia Simulator');
   await expect(page.getByRole('heading', { level: 1 })).toBeInViewport();
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
-  await page.getByRole('link', { name: 'Work & education', exact: true }).click();
-  await expect(page.getByRole('heading', { level: 1 })).toBeInViewport();
+  await page.getByRole('link', { name: 'Back to overview', exact: true }).click();
+  await expect(page.getByRole('heading', { name: 'Experience', exact: true })).toBeInViewport();
 });
 
 test('pages and links work without JavaScript', async ({ browser }) => {
   const context = await browser.newContext({ javaScriptEnabled: false });
   const page = await context.newPage();
   await page.goto(origin + base + '/');
-  await expect(page.getByRole('heading', { level: 1 })).toHaveText('Work & education');
+  await expect(page.getByRole('heading', { level: 1 })).toHaveText('Experience, education & publications');
   await page.getByRole('navigation', { name: 'Projects', exact: true }).getByRole('link', { name: /Emergent Garden/ }).click();
   await expect(page.getByRole('heading', { level: 1 })).toHaveText('Emergent Garden');
   await context.close();
@@ -102,8 +106,8 @@ test('missing pages return a genuine 404 with a working home link', async ({ pag
   const response = await page.goto('projects/not-a-project/');
   expect(response?.status()).toBe(404);
   await expect(page.getByRole('heading', { level: 1 })).toHaveText('A little off the path.');
-  await page.getByRole('link', { name: 'Back to work & education' }).click();
-  await expect(page.getByRole('heading', { level: 1 })).toHaveText('Work & education');
+  await page.getByRole('link', { name: 'Back to overview' }).click();
+  await expect(page.getByRole('heading', { level: 1 })).toHaveText('Experience, education & publications');
 });
 
 test('the project list is keyboard accessible', async ({ page }) => {
@@ -116,3 +120,4 @@ test('the project list is keyboard accessible', async ({ page }) => {
   await expect(page.getByRole('heading', { level: 1 })).toHaveText('Medical-image AI');
   await expect(page.locator('main')).toBeFocused();
 });
+
