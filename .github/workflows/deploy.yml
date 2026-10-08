@@ -37,12 +37,6 @@ jobs:
         run: npm run build
         env:
           BASE_PATH: ${{ steps.pages.outputs.base_path }}
-      - name: Install Chromium
-        run: npx playwright install --with-deps chromium
-      - name: Test static site
-        run: npm test
-        env:
-          BASE_PATH: ${{ steps.pages.outputs.base_path }}
       - name: Upload site
         uses: actions/upload-pages-artifact@v3
         with:

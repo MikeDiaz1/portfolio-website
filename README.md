@@ -8,10 +8,11 @@ Built with **Svelte 5, SvelteKit 3, and TypeScript**, with fully static output f
 
 ## Explore
 
-The portfolio includes Medical-image AI, Emergent Garden, Nostalgia Simulator, and Further Down, Still. Each has its own address, such as `/projects/emergent-garden/`, so projects can be bookmarked, shared, opened in a new tab, or reached using browser Back and Forward.
+Projects / Previous Work contains 16 entries grouped into research, websites and previous work, games and simulation, and more projects. Research includes three linked thesis parts and retinal OCT classification. Every entry has its own address, such as `/projects/pixel-tower-defense/`, so projects can be bookmarked, shared, opened in a new tab, or reached using browser Back and Forward.
 
 - [GitHub](https://github.com/MikeDiaz1)
 - [LinkedIn](https://www.linkedin.com/in/michael-diaz-stewart-7547ab271/)
+- [Kaggle](https://www.kaggle.com/michaeldiazstewart)
 
 ## Run locally
 
@@ -36,7 +37,7 @@ No API keys, database, or server deployment are needed. Fonts, icons, and images
 
 ## Make it your own
 
-Most changes only need two files:
+Content and presentation live in these files:
 
 | File | What to change |
 | --- | --- |
@@ -54,7 +55,7 @@ Set the destinations in `profile.links`. External URLs, `mailto:` links, and `te
 { label: 'Contact', href: 'mailto:hello@example.com' }
 ```
 
-Add `static/resume.pdf` before setting that link. An empty destination renders a muted, unavailable label. Resume and Contact start this way until real destinations are supplied.
+Add `static/resume.pdf` before setting that link. An empty destination renders a muted, unavailable label. Resume currently uses this state; Contact is omitted.
 
 For a portrait, add your image to `static/images/` and set `profile.avatar` to, for example, `'images/portrait.jpg'`. An empty value displays the silhouette.
 
@@ -71,16 +72,19 @@ Publication DOI links are generated from each entry's `doi` value. To add poster
 Add or edit entries in the `projects` array. Every entry becomes a sidebar card and a prerendered page automatically. The array order controls both the sidebar and the “Next project” links.
 
 - Use a unique, URL-friendly slug, such as `my-project`. Keep published slugs stable so existing links continue to work.
-- Put artwork in `static/images/` and set `image` to its path without a leading slash.
-- Add descriptive `imageAlt` text for the full-size project image.
+- Use `aliases` when renaming a project. `/projects/nostalgia-simulator/` still opens Nostalgia Desktop, whose current address is `/projects/nostalgia-desktop/`.
+- Set `group` for the sidebar heading and `format` to `research`, `gallery`, `website`, `compact`, or `placeholder` for the appropriate layout.
+- Put images in `static/images/projects/` and set `image` to its path without a leading slash. Supply the actual `imageWidth` and `imageHeight`, descriptive `imageAlt` text, and an optional `imageCaption`.
+- Use `facts` for role, tools, dates, or context. `results` and `resultNote` can show research metrics with their evaluation context.
 - Use `sections` for the project story and `links` for live demos, papers, or repositories. Resource links should use complete URLs.
+- Add `gallery` images with dimensions, captions, and optional `portrait: true`. Images retain their proportions and open at full size. `related` lists project slugs for the thesis navigation.
 - Rebuild after changing content.
 
-The longer descriptions are starter copy based on the example project summaries. Replace them with your own case studies. The four banners are illustrative AI-generated artwork, not actual research data or project screenshots; [artwork notes and prompts](docs/artwork.md) are included. When adapting the template, replace the personal information, project content, social links, and artwork with your own.
+The expanded entries use Michael's project presentation, thesis defence slides, screenshots, and supplied descriptions; see [content and image sources](docs/project-sources.md). Nostalgia Desktop, Emergent Garden, and Further Down, Still retain placeholder copy and illustrative artwork pending further details. [Artwork notes and original prompts](docs/artwork.md) distinguish those images from project screenshots and research figures.
 
 ## Deploy to GitHub Pages
 
-The included [GitHub Actions workflow](.github/workflows/deploy.yml) checks the project, builds it, runs browser tests against the static files, and deploys the `build/` directory.
+The included [GitHub Actions workflow](.github/workflows/deploy.yml) checks the project, builds it, and deploys the `build/` directory.
 
 1. Push the project and its lockfile to a GitHub repository with a `main` branch.
 2. In **Settings → Pages → Build and deployment**, select **GitHub Actions** as the source.
@@ -127,9 +131,12 @@ build/
 ├── .nojekyll
 ├── projects/
 │   ├── medical-image-ai/index.html
-│   ├── emergent-garden/index.html
+│   ├── cms-reference-labels/index.html
+│   ├── survival-modelling/index.html
+│   ├── retinal-oct/index.html
+│   ├── nostalgia-desktop/index.html
 │   ├── nostalgia-simulator/index.html
-│   └── further-down-still/index.html
+│   └── ... (every project and alias)
 ├── images/
 └── _app/
 ```
@@ -138,15 +145,7 @@ Direct links and refreshes are served as real HTML documents. No hash router or 
 
 On wide screens the layout sits in a centered container with a maximum width of 1240px. The fixed profile header spans both columns, with a wider resume panel and a narrow, independently scrolling project list below. The list keeps its scroll position when switching projects. On smaller screens the layout becomes a single column, with projects below the main content. Keyboard focus styles, a skip link, active-project announcements, and reduced-motion support are included.
 
-## Browser tests
+## Verification
 
-```sh
-npx playwright install chromium
-npm run build
-npm test
-```
-
-The tests cover project navigation, Back and Forward, direct links, refreshes, independent scrolling, mobile overflow, keyboard access, image loading, missing pages, and navigation without JavaScript.
-
-Tests use a small static file server that serves only `build/`, so they also verify the output works without SvelteKit's development server. To test a repository deployment, set the same `BASE_PATH` for the build and test commands. `PORT` can select a test-server port if the default, 4173, is occupied.
+Keep changes lightweight: run `npm run check` and `npm run build`, then briefly inspect the affected pages at desktop and mobile widths using `npm run preview`. This site does not maintain a browser test suite.
 

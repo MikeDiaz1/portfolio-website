@@ -1,8 +1,8 @@
 # Artwork
 
-The four project banners were created with the built-in image-generation tool for this portfolio template. They are illustrative artwork, not clinical data or screenshots from the named projects. The original supplied layout guided the subject matter and palette.
+The four original project banners were created with the built-in image-generation tool for this portfolio template. They are illustrative artwork, not clinical data or screenshots from the named projects. The original supplied layout guided the subject matter and palette.
 
-The files are stored in `static/images/` and are used by both the sidebar and project detail pages. Replace them with your own images when adapting the portfolio.
+The files are stored in `static/images/`. Emergent Garden, Nostalgia Desktop, and Further Down, Still still use these banners as marked placeholders. The original Nostalgia Simulator filename and artwork are retained, while its page title is now Nostalgia Desktop. The medical-image banner is no longer displayed: the thesis entries use Michael's actual analysis figures. The new project images are documented in [project sources](project-sources.md).
 
 ## Generation prompts
 

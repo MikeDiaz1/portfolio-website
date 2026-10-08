@@ -1,20 +1,20 @@
 export interface ProfileLink {
   label: string;
   href: string;
-  icon?: 'github' | 'linkedin';
+  icon?: 'github' | 'linkedin' | 'kaggle';
 }
 
 export const profile = {
   name: 'Michael Diaz-Stewart',
-  tagline: 'Image-based ML & full-stack software',
+  tagline: 'Machine learning / Healthcare / Full-stack software',
   // Paths are relative to static/. Leave empty to use the silhouette.
   avatar: 'images/selfie.jpg',
   // Add your real destinations. Empty destinations render as unavailable labels.
   links: [
     { label: 'GitHub', href: 'https://github.com/MikeDiaz1', icon: 'github' },
     { label: 'LinkedIn', href: 'https://www.linkedin.com/in/michael-diaz-stewart-7547ab271/', icon: 'linkedin' },
-    { label: 'Resume', href: '' },
-    { label: 'Contact', href: '' }
+    { label: 'Kaggle', href: 'https://www.kaggle.com/michaeldiazstewart', icon: 'kaggle' },
+    { label: 'Resume', href: '' }
   ] satisfies ProfileLink[]
 };
 
@@ -127,7 +127,7 @@ export const education: Education[] = [
     ]
   },
   {
-    degree: 'Honours BSc, Biology',
+    degree: 'Bachelor of Science (Hons), Biology',
     institution: 'York University',
     date: 'May 2022',
     initials: 'YU',
