@@ -1,5 +1,7 @@
 import type { AssetPath } from '$app/types';
 
+export type ProjectFilter = 'Machine Learning' | 'Game' | 'Web';
+
 export interface ProjectImage {
   src: AssetPath;
   alt: string;
@@ -14,6 +16,7 @@ export interface Project {
   aliases?: string[];
   title: string;
   group: string;
+  filterCategory: ProjectFilter;
   category: string;
   summary: string;
   image: AssetPath;
@@ -38,14 +41,15 @@ export interface Project {
 export const projects: Project[] = [
   {
     "slug": "cms-reference-labels",
-    "title": "CMS reference labels",
+    "title": "Cancer subtype reference stability",
     "group": "Research",
+    "filterCategory": "Machine Learning",
     "category": "Computational pathology",
-    "summary": "Investigating the reliability of colorectal cancer subtype labels.",
-    "image": "images/projects/cms-classifiers.webp",
+    "summary": "Investigating the reliability of CMS labels.",
+    "image": "images/projects/cms_classifiers.png",
     "imageAlt": "The same expression data produces CMS2, CMS4 or an unclassified result with three different classifiers.",
-    "imageWidth": 1345,
-    "imageHeight": 600,
+    "imageWidth": 852,
+    "imageHeight": 448,
     "imageCaption": "Different classifiers can assign different consensus molecular subtypes to the same sample.",
     "format": "research",
     "facts": [
@@ -65,21 +69,13 @@ export const projects: Project[] = [
     "introduction": "Before training an image model to predict a molecular subtype, I wanted to understand how reliable the target labels were. This part of my thesis compared consensus molecular subtype (CMS) classifiers in colorectal cancer and examined whether their labels matched the expected biology.",
     "sections": [
       {
-        "title": "Comparing the reference labels",
-        "body": "I compared Random Forest, Single Sample Predictor and NanoString approaches using gene-expression data. The analysis considered classifier agreement, indeterminate calls, and the effects of changing thresholds and preprocessing."
-      },
-      {
-        "title": "A label depends on the protocol",
-        "body": "Random Forest and Single Sample Predictor had a Cohen’s kappa of 0.56 among jointly classified cases, but agreement fell to 0.28 when indeterminate calls were retained. Changing settings within a classifier also changed the assignments. These choices affect what an image model is being asked to learn."
-      },
-      {
-        "title": "Checking the biological interpretation",
-        "body": "I used gene set enrichment analysis to examine how the groups related to expected expression phenotypes. The subtypes retained useful biological information, but the results showed why uncertainty in the reference labels needs to be part of model evaluation."
+        "title": "A reference label depends on the protocol",
+        "body": "I compared Random Forest, Single Sample Predictor and NanoString FFPE approaches using gene-expression data. The analysis considered classifier agreement, indeterminate calls, and the effects of changing thresholds and preprocessing. Random Forest and Single Sample Predictor had a Cohen’s kappa of 0.56 among jointly classified cases, but agreement fell to 0.28 when indeterminate calls were retained. Changing settings within a classifier also changed the assignments, and literature methods varied. These choices affect what an image model is being asked to learn."
       }
     ],
     "gallery": [
       {
-        "src": "images/projects/cms-agreement.webp",
+        "src": "images/projects/varied_methods.png",
         "alt": "Three confusion matrices comparing CMS assignments under different treatments of indeterminate cases.",
         "width": 1653,
         "height": 409,
@@ -87,10 +83,9 @@ export const projects: Project[] = [
       }
     ],
     "tags": [
-      "Colorectal cancer",
-      "Gene expression",
-      "CMS",
-      "GSEA"
+      "Label Quality",
+      "Model Evaluation",
+      "Gene Expression"
     ],
     "links": [],
     "related": [
@@ -100,14 +95,15 @@ export const projects: Project[] = [
   },
   {
     "slug": "medical-image-ai",
-    "title": "Histology-based biomarker prediction",
+    "title": "Image-based biomarker prediction",
     "group": "Research",
+    "filterCategory": "Machine Learning",
     "category": "Medical-image machine learning",
-    "summary": "Testing what tissue images can tell us about colorectal cancer biomarkers.",
+    "summary": "Testing what histology can tell us about colorectal cancer biomarkers.",
     "image": "images/projects/molecular-pipeline.webp",
-    "imageAlt": "TCGA, POG and MD Anderson cohorts feed a histology pipeline: tissue patches, foundation-model encoders and attention-based multiple-instance learning.",
-    "imageWidth": 1800,
-    "imageHeight": 598,
+    "imageAlt": "Cohorts, the histopathology pipeline and the four evaluated tasks: CMS, MSI, mutations and survival.",
+    "imageWidth": 3206,
+    "imageHeight": 1565,
     "imageCaption": "Whole-slide images become patch embeddings, which are pooled to make slide-level predictions.",
     "format": "research",
     "facts": [
@@ -143,15 +139,7 @@ export const projects: Project[] = [
     "sections": [
       {
         "title": "From tissue patches to predictions",
-        "body": "The pipeline combines pathology foundation-model embeddings with attention-based multiple-instance learning. I compared Phikon, UNI, H-optimus-0 and prov-GigaPath, using TCGA for development and evaluating held-out data that included the MD Anderson and POG cohorts."
-      },
-      {
-        "title": "Choosing the operating point",
-        "body": "A screening model needs to account for the cost of missing a positive case. For MSI, I evaluated a high-sensitivity approach that could direct patients toward confirmatory testing. RAS and BRAF required different threshold choices because the useful prediction, and the consequences of an error, differed by target."
-      },
-      {
-        "title": "What the evaluation supported",
-        "body": "MSI pre-screening was the most promising application. CMS evaluation remained limited by uncertainty in the reference labels, while clinically tuned RAS/BRAF thresholds left too little coverage to support implementation. These are retrospective research results, and the testing pathways in the thesis are hypothetical."
+        "body": "The pipeline combines pathology foundation-model embeddings with attention-based multiple-instance learning. For MSI, I evaluated a high-sensitivity approach that could direct patients toward confirmatory testing. RAS and BRAF required different threshold choices because the useful prediction, and the consequences of an error, differed by target. MSI pre-screening was the most promising application. CMS evaluation remained limited by uncertainty in the reference labels, while clinically tuned RAS/BRAF thresholds left too little coverage to support implementation."
       }
     ],
     "gallery": [
@@ -161,13 +149,19 @@ export const projects: Project[] = [
         "width": 1800,
         "height": 1382,
         "caption": "MSI results at the selected screening operating point, including the trade-off between sensitivity and specificity."
+      },
+      {
+        "src": "images/projects/msi-screening-flow.png",
+        "alt": "Illustrative MSI screening flow for 1,000 patients: 561 predicted high risk include 129 true positives and 432 false positives; 439 predicted low risk include 8 false negatives and 431 true negatives.",
+        "width": 787,
+        "height": 721,
+        "caption": "Illustrative MSI pre-screening scenario for 1,000 patients. The high-risk group contains 129 of 137 MSI-high cases, while 8 are assigned to the low-risk group."
       }
     ],
     "tags": [
       "PyTorch",
-      "Computational pathology",
-      "Foundation models",
-      "External validation"
+      "Multiple-Instance Learning",
+      "Foundation Models"
     ],
     "links": [],
     "related": [
@@ -177,8 +171,9 @@ export const projects: Project[] = [
   },
   {
     "slug": "survival-modelling",
-    "title": "Survival modelling across cohorts",
+    "title": "Image-based direct survival prediction",
     "group": "Research",
+    "filterCategory": "Machine Learning",
     "category": "Medical-image machine learning",
     "summary": "Investigating why pooled survival results weakened within individual cohorts.",
     "image": "images/projects/survival-approach.webp",
@@ -201,35 +196,37 @@ export const projects: Project[] = [
         "value": "Pooled and stratified"
       }
     ],
-    "introduction": "This part of my thesis investigated survival modelling from colorectal cancer histology. Some encoders separated risk groups in the combined test set, so I examined whether that signal held up when each cohort was considered separately.",
+    "introduction": "",
     "sections": [
       {
-        "title": "Modelling time to an event",
+        "title": "",
         "body": "I used image representations to predict conditional event probabilities across time intervals, then derived survival probabilities and risk scores. Evaluation included the concordance index, hazard ratios and Kaplan–Meier risk-group comparisons."
       },
       {
         "title": "Looking inside the pooled result",
-        "body": "UNI and prov-GigaPath reached pooled test C-indices of 0.618 and 0.626. Performance weakened after stratifying by TCGA, MD Anderson and POG, and predicted risk differed substantially by cohort. The stronger pooled result did not establish reliable discrimination within each cohort."
-      },
-      {
-        "title": "Following up on the failure modes",
-        "body": "I examined the distribution of risk scores and associations with molecular biomarkers. These associations were weak and sensitive to cohort composition. The work illustrates why external evaluation needs to look at cohort effects as well as aggregate performance."
+        "body": "UNI and prov-GigaPath reached pooled test C-indices of 0.618 and 0.626. Performance weakened after stratifying by TCGA, MD Anderson and POG, and predicted risk differed substantially by cohort. The stronger pooled result did not establish reliable discrimination within each cohort. I examined the distribution of risk scores and associations with molecular biomarkers. These associations were weak and sensitive to cohort composition. The work illustrates why external evaluation needs to look at cohort effects as well as aggregate performance."
       }
     ],
     "gallery": [
       {
-        "src": "images/projects/survival-cohorts.webp",
-        "alt": "Overlaid histograms of predicted risk for TCGA, MD Anderson and POG, showing different score distributions.",
-        "width": 822,
-        "height": 556,
-        "caption": "Predicted risk distributions differed substantially across the three cohorts."
+        "src": "images/projects/survival-risk-groups.png",
+        "alt": "Four Kaplan–Meier plots comparing low-risk and high-risk groups, with shaded confidence intervals, hazard ratios and log-rank p-values. The lower two panels show greater separation between groups.",
+        "width": 878,
+        "height": 778,
+        "caption": "Kaplan–Meier curves comparing predicted low-risk and high-risk groups across four encoders, with hazard ratios and log-rank p-values."
+      },
+      {
+        "src": "images/projects/survival-cohort-boxplots.png",
+        "alt": "Boxplots of predicted risk scores for TCGA, MDA and POG, showing the lowest median in MDA and the highest in POG, with annotated pairwise comparisons.",
+        "width": 864,
+        "height": 614,
+        "caption": "Predicted risk scores varied by cohort, with a lower median in MDA and a higher median in POG."
       }
     ],
     "tags": [
-      "Survival analysis",
-      "Multiple-instance learning",
-      "Cohort shift",
-      "Model evaluation"
+      "Multiple-Instance Learning",
+      "Domain Shift",
+      "Model Evaluation"
     ],
     "links": [],
     "related": [
@@ -238,11 +235,47 @@ export const projects: Project[] = [
     ]
   },
   {
-    "slug": "retinal-oct",
-    "title": "Retinal OCT classification",
+    "slug": "endometrial-biopsy-adaptation",
+    "title": "Adapting tumor annotation to biopsies",
     "group": "Research",
+    "filterCategory": "Machine Learning",
+    "category": "Computational pathology",
+    "summary": "Improving tumor annotation on endometrial biopsy slides through supervised fine-tuning and threshold selection.",
+    "image": "images/projects/endometrial-biopsy-annotations.png",
+    "imageAlt": "Four panels compare model-predicted tumor outlines in blue with a pathologist's tumor annotations in green and other cell-type annotations in red on the same biopsy slide, at threshold settings 4, 5, 6 and 7.",
+    "imageWidth": 1262,
+    "imageHeight": 869,
+    "imageCaption": "Threshold comparison on one biopsy slide. Green marks the pathologist's tumor annotations, red marks another cell type, and blue outlines the model's predicted tumor regions.",
+    "format": "research",
+    "introduction": "I adapted an existing tumor-annotation model to endometrial biopsy slides using supervised fine-tuning on additional slides annotated by a pathologist. I then refined the prediction threshold to bring the automated tumor regions into closer agreement with those annotations.",
+    "sections": [
+      {
+        "title": "Building on earlier research",
+        "body": "Earlier work published in Nature Communications identified a p53abn-like subgroup within endometrial cancers classified as NSMP (no specific molecular profile), associated with poorer outcomes. My follow-on contribution focused on adapting the tumor-annotation stage of the image-analysis pipeline from surgical sections to biopsy slides. The model needed to handle the different tissue presentation in biopsy slides. I used additional biopsy images with pathologist-provided annotations for supervised fine-tuning, improving automated tumor annotation on these specimens."
+      },
+      {
+        "title": "Choosing the prediction threshold",
+        "body": "After fine-tuning, I compared predicted tumor regions with the pathologist's annotations across threshold settings. Threshold selection further improved their agreement. The figure illustrates the trade-off: increasing the threshold removes predicted regions outside the annotated tumor, but can also exclude parts of the tumor itself."
+      }
+    ],
+    "tags": [
+      "Supervised Fine-Tuning",
+      "Domain Adaptation"
+    ],
+    "links": [
+      {
+        "label": "Background study · Nature Communications (2024)",
+        "href": "https://www.nature.com/articles/s41467-024-49017-2"
+      }
+    ]
+  },
+  {
+    "slug": "retinal-oct",
+    "title": "Retinal disease classifier",
+    "group": "Research",
+    "filterCategory": "Machine Learning",
     "category": "Computer vision",
-    "summary": "Comparing convolutional architectures for retinal image classification.",
+    "summary": "Comparing ConvNet architectures for retinal image classification.",
     "image": "images/projects/oct-gradcam.webp",
     "imageAlt": "A retinal OCT scan with a Grad-CAM heatmap highlighting part of the retinal structure.",
     "imageWidth": 1024,
@@ -282,11 +315,7 @@ export const projects: Project[] = [
     "sections": [
       {
         "title": "Learning from the errors",
-        "body": "The classes were choroidal neovascularization (CNV), diabetic macular edema (DME), drusen and normal retina. I addressed class imbalance with weighting and monitored precision, recall and F1 alongside accuracy."
-      },
-      {
-        "title": "Architecture and model size",
-        "body": "Overfitting was a recurring problem. I experimented with batch size and model complexity, used Optuna for hyperparameter tuning, and implemented ideas from EfficientNet and ResNet. The experiments showed that adding depth was not automatically helpful, and that a small network could perform well."
+        "body": "The classes were choroidal neovascularization (CNV), diabetic macular edema (DME), drusen and normal retina. I addressed class imbalance with weighting and monitored precision, recall and F1 alongside accuracy. Overfitting was a recurring problem. I experimented with batch size and model complexity, used Optuna for hyperparameter tuning, and implemented ideas from EfficientNet and ResNet. The experiments showed that adding depth was not automatically helpful, and that a small network could perform well."
       },
       {
         "title": "Inspecting the model",
@@ -303,10 +332,8 @@ export const projects: Project[] = [
       }
     ],
     "tags": [
-      "Python",
       "TensorFlow",
       "Keras",
-      "Optuna",
       "Grad-CAM"
     ],
     "links": [
@@ -322,8 +349,9 @@ export const projects: Project[] = [
   },
   {
     "slug": "ubc-ocean",
-    "title": "UBC-OCEAN",
+    "title": "UBC-OCEAN Competition",
     "group": "Research",
+    "filterCategory": "Machine Learning",
     "category": "Research community / Kaggle",
     "summary": "Helping organize an ovarian cancer image-classification competition.",
     "image": "images/projects/ubc-ocean.webp",
@@ -354,9 +382,8 @@ export const projects: Project[] = [
       }
     ],
     "tags": [
-      "Kaggle",
-      "Computational pathology",
-      "Research coordination"
+      "Kaggle Competitions",
+      "Outlier Detection"
     ],
     "links": [
       {
@@ -371,14 +398,15 @@ export const projects: Project[] = [
   },
   {
     "slug": "aim-lab-website",
-    "title": "AIM Lab website",
+    "title": "AI in Medicine lab website",
     "group": "Websites & previous work",
+    "filterCategory": "Web",
     "category": "Web development / Research",
     "summary": "Built and maintain the AI in Medicine Lab website at UBC.",
-    "image": "images/projects/aim-lab.webp",
+    "image": "images/projects/aim-lab.png",
     "imageAlt": "The AI in Medicine Lab website home page.",
-    "imageWidth": 1265,
-    "imageHeight": 712,
+    "imageWidth": 1919,
+    "imageHeight": 1079,
     "imageCaption": "The AIM Lab website brings together the lab’s research and public information.",
     "format": "website",
     "facts": [
@@ -403,9 +431,8 @@ export const projects: Project[] = [
       }
     ],
     "tags": [
-      "Web development",
-      "Website maintenance",
-      "Research communication"
+      "Web Development",
+      "Research Communication"
     ],
     "links": [
       {
@@ -415,61 +442,17 @@ export const projects: Project[] = [
     ]
   },
   {
-    "slug": "plm-coach",
-    "title": "PLM Coach",
-    "group": "Websites & previous work",
-    "category": "Web administration / Volunteer work",
-    "summary": "Ongoing website responsibility as volunteer VP Technology Admin.",
-    "image": "images/projects/plm-coach.webp",
-    "imageAlt": "The PLM Coach website home page with information about the health coaching program.",
-    "imageWidth": 1253,
-    "imageHeight": 705,
-    "imageCaption": "PLM Coach connects participants with UBC medical student health coaches.",
-    "format": "website",
-    "facts": [
-      {
-        "label": "Role",
-        "value": "Volunteer VP Technology Admin"
-      },
-      {
-        "label": "Commitment",
-        "value": "About three years"
-      },
-      {
-        "label": "Status",
-        "value": "Ongoing"
-      }
-    ],
-    "introduction": "I’ve been responsible for the PLM Coach website for about three years as volunteer VP Technology Admin. PLM stands for Prevention and Lifestyle Medicine, and the program offers free health coaching with UBC medical students.",
-    "sections": [
-      {
-        "title": "Keeping the program accessible",
-        "body": "The website explains the program, introduces the team, and helps prospective participants find eligibility information and sign-up options. My contribution is the ongoing technology administration and upkeep that supports this public-facing part of the program."
-      }
-    ],
-    "tags": [
-      "Volunteer work",
-      "Website administration",
-      "Healthcare"
-    ],
-    "links": [
-      {
-        "label": "Visit PLM Coach",
-        "href": "https://www.plmcoach.ca/"
-      }
-    ]
-  },
-  {
     "slug": "stafits",
-    "title": "Stafits",
+    "title": "Stafits website and app",
     "group": "Websites & previous work",
+    "filterCategory": "Web",
     "category": "Software development / Startup",
     "summary": "Website, user portal, browser extensions and a mobile travel app.",
-    "image": "images/projects/stafits.webp",
-    "imageAlt": "The Stafits website showing employee benefits offers and a floral landing-page banner.",
-    "imageWidth": 1800,
-    "imageHeight": 904,
-    "imageCaption": "Stafits website from my time at the company.",
+    "image": "images/projects/stafits.png",
+    "imageAlt": "The Stafits website showing employee-wellness articles and a contact banner with a woman surrounded by pink smoke.",
+    "imageWidth": 1920,
+    "imageHeight": 964,
+    "imageCaption": "Archived Stafits website showing its articles and contact section.",
     "format": "gallery",
     "facts": [
       {
@@ -515,9 +498,9 @@ export const projects: Project[] = [
       }
     ],
     "tags": [
-      "Web development",
-      "Mobile apps",
-      "Browser extensions",
+      "Web Development",
+      "Mobile Apps",
+      "Browser Extensions",
       "Google Places API"
     ],
     "links": [
@@ -536,9 +519,55 @@ export const projects: Project[] = [
     ]
   },
   {
-    "slug": "upropos",
-    "title": "Upropos",
+    "slug": "plm-coach",
+    "title": "PLM Coach website",
     "group": "Websites & previous work",
+    "filterCategory": "Web",
+    "category": "Web administration / Volunteer work",
+    "summary": "Website administration for a UBC health-coaching program.",
+    "image": "images/projects/plm-coach.png",
+    "imageAlt": "The PLM Coach website home page with information about the health coaching program.",
+    "imageWidth": 1919,
+    "imageHeight": 1079,
+    "imageCaption": "PLM Coach connects participants with UBC medical student health coaches.",
+    "format": "website",
+    "facts": [
+      {
+        "label": "Role",
+        "value": "Volunteer VP Technology Admin"
+      },
+      {
+        "label": "Commitment",
+        "value": "About three years"
+      },
+      {
+        "label": "Status",
+        "value": "Website management"
+      }
+    ],
+    "introduction": "I served as volunteer VP Technology Admin for PLM Coach for about three years, with responsibility for its website. PLM stands for Prevention and Lifestyle Medicine, and the program offers free health coaching with UBC medical students.",
+    "sections": [
+      {
+        "title": "Keeping the program accessible",
+        "body": "The website explains the program, introduces the team, and helps prospective participants find eligibility information and sign-up options. My work focused on website administration and upkeep, and I still look after the website."
+      }
+    ],
+    "tags": [
+      "Website Development",
+      "Healthcare"
+    ],
+    "links": [
+      {
+        "label": "Visit PLM Coach",
+        "href": "https://www.plmcoach.ca/"
+      }
+    ]
+  },
+  {
+    "slug": "upropos",
+    "title": "Upropos (ethereum)",
+    "group": "Websites & previous work",
+    "filterCategory": "Web",
     "category": "Web development / Entrepreneurship",
     "summary": "An Ethereum crowdfunding platform and proof of concept.",
     "image": "images/projects/upropos.webp",
@@ -575,8 +604,7 @@ export const projects: Project[] = [
     "tags": [
       "Ethereum",
       "Solidity",
-      "web3",
-      "Prototyping"
+      "web3"
     ],
     "links": [
       {
@@ -593,12 +621,13 @@ export const projects: Project[] = [
     "slug": "presentations",
     "title": "Presentations",
     "group": "Games & simulation",
+    "filterCategory": "Game",
     "category": "Healthcare simulation",
     "summary": "An emergency-room patient simulation for practising symptom recognition.",
-    "image": "images/projects/presentations.webp",
-    "imageAlt": "Presentations simulation showing patient information and a clinical explanation in an illustrated consultation-room interface.",
-    "imageWidth": 1800,
-    "imageHeight": 1013,
+    "image": "images/projects/presentations.png",
+    "imageAlt": "Presentations simulation showing an emergency-unit patient form, diagnostic choices and feedback on an incorrect diagnosis in an illustrated consultation room.",
+    "imageWidth": 1920,
+    "imageHeight": 1080,
     "imageCaption": "The simulation combines patient information, diagnostic choices and explanatory feedback.",
     "format": "gallery",
     "facts": [
@@ -615,26 +644,22 @@ export const projects: Project[] = [
         "value": "Unity / C#"
       }
     ],
-    "introduction": "Presentations is a Unity simulation of patient presentations in an emergency-room setting. I built it to explore the connection between medicine and software, and to practise recognizing disease patterns from a patient’s demographics, symptoms and vital signs.",
+    "introduction": "Presentations is a Unity simulation of patient presentations in an emergency-room setting. I built it to model diseases with software, and to practise recognizing disease patterns from a patient’s demographics, symptoms and vital signs.",
     "sections": [
       {
         "title": "Generating a patient",
-        "body": "The prototype covers 18 disease presentations. It generates demographic and risk-factor information such as age, weight, activity, smoking and family history, uses those factors to weight disease likelihood, and then generates a symptom profile."
+        "body": "The game covers 18 disease presentations. It generates demographic and risk-factor information such as age, weight, activity, smoking and family history, uses those factors to weight disease likelihood, and then generates a symptom profile. Players choose a diagnosis and receive feedback. Hover text explains physiological ranges and terminology, giving the case more context as the player works through it."
       },
       {
-        "title": "Learning through feedback",
-        "body": "Players choose a diagnosis and receive feedback. Hover text explains physiological ranges and terminology, giving the case more context as the player works through it."
-      },
-      {
-        "title": "The modelling challenge",
-        "body": "Hand-written rules made it difficult to represent the interplay between many risk factors and symptoms. Working on those relationships became part of my motivation to explore machine learning. This was an educational prototype."
+        "title": "",
+        "body": "Hand-written rules made it difficult to represent the interplay between many risk factors and symptoms. Working on those relationships became part of my motivation to explore machine learning."
       }
     ],
     "tags": [
       "Unity",
       "C#",
       "Simulation",
-      "Medical education"
+      "Medical Education"
     ],
     "links": [
       {
@@ -647,13 +672,14 @@ export const projects: Project[] = [
     "slug": "pixel-tower-defense",
     "title": "Pixel Tower Defense",
     "group": "Games & simulation",
+    "filterCategory": "Game",
     "category": "3D mobile game",
-    "summary": "A voxel-style tower defense game published on Google Play around 2017.",
-    "image": "images/projects/pixel-td.webp",
-    "imageAlt": "Pixel Tower Defense gameplay with neon-outlined voxel towers, a wave control and a green 3D playfield.",
-    "imageWidth": 1800,
-    "imageHeight": 1013,
-    "imageCaption": "The later prototype, with voxel towers and baked lighting.",
+    "summary": "A simple tower defense game published on Google Play around 2017.",
+    "image": "images/projects/pixel-td-title.png",
+    "imageAlt": "Pixel Tower Defense title screen with a neon turquoise particle background, a Play button and a credit to Michael Diaz-Stewart.",
+    "imageWidth": 1920,
+    "imageHeight": 1080,
+    "imageCaption": "Pixel Tower Defense title screen.",
     "format": "gallery",
     "facts": [
       {
@@ -669,14 +695,14 @@ export const projects: Project[] = [
         "value": "Unity / C#"
       }
     ],
-    "introduction": "I built Pixel Tower Defense in Unity and C#, taking a 3D tower defense game with voxel graphics through to a Google Play release around 2017. Players defend against endless waves of enemies by placing and upgrading towers.",
+    "introduction": "I built Pixel Tower Defense in Unity and C#, taking a 3D tower defense game with simple graphics through to a Google Play release around 2017. Players defend against endless waves of enemies by placing and upgrading towers.",
     "sections": [
       {
         "title": "Developing the game",
         "body": "The project combined a 3D playfield with tower selection, upgrade controls and wave progression. The visual style uses simple geometric forms, bright outlines and strong colour contrasts."
       },
       {
-        "title": "Iterating on the interface",
+        "title": "",
         "body": "The progress images show the game moving from an early prototype to a more developed interface, a dedicated upgrades menu and baked lighting. One screenshot was annotated for an in-game instructional diagram."
       }
     ],
@@ -700,7 +726,6 @@ export const projects: Project[] = [
       "Unity",
       "C#",
       "3D",
-      "Voxel graphics",
       "Android"
     ],
     "links": [
@@ -714,12 +739,13 @@ export const projects: Project[] = [
     "slug": "expand-land",
     "title": "Expand Land",
     "group": "Games & simulation",
+    "filterCategory": "Game",
     "category": "2D mobile puzzle game",
     "summary": "Fill the playfield while avoiding obstacles. Published on Google Play around 2017.",
-    "image": "images/projects/expand-land.webp",
+    "image": "images/projects/expand-land.png",
     "imageAlt": "Expand Land puzzle gameplay with turquoise circles filling a yellow-green playfield and moving star-shaped obstacles.",
-    "imageWidth": 590,
-    "imageHeight": 332,
+    "imageWidth": 2960,
+    "imageHeight": 1440,
     "imageCaption": "Growing circles to cover the playfield while avoiding obstacles.",
     "format": "gallery",
     "facts": [
@@ -749,11 +775,11 @@ export const projects: Project[] = [
     ],
     "gallery": [
       {
-        "src": "images/projects/expand-land-play.webp",
-        "alt": "A red circle expanding between star obstacles in Expand Land, with the level and coverage indicator on the right.",
-        "width": 720,
-        "height": 404,
-        "caption": "A circle growing in the playfield."
+        "src": "images/projects/expand-land-play.png",
+        "alt": "Expand Land level 2 with blue circles covering 65 percent of a white playfield, black star-shaped obstacles and three lives remaining.",
+        "width": 2960,
+        "height": 1440,
+        "caption": "Level 2 with 65% of the playfield covered."
       },
       {
         "src": "images/projects/expand-land-retry.webp",
@@ -780,6 +806,7 @@ export const projects: Project[] = [
     "slug": "simba-runescape",
     "title": "RuneScape automation",
     "group": "Games & simulation",
+    "filterCategory": "Game",
     "category": "Scripting / Game automation",
     "summary": "Writing Simba scripts to automate tasks in RuneScape.",
     "image": "images/projects/simba-runescape.webp",
@@ -822,7 +849,8 @@ export const projects: Project[] = [
       "nostalgia-simulator"
     ],
     "title": "Nostalgia Desktop",
-    "group": "More projects",
+    "group": "Games & simulation",
+    "filterCategory": "Game",
     "category": "Interactive experience / Digital nostalgia",
     "summary": "A desktop experience for exploring digital nostalgia.",
     "image": "images/nostalgia-simulator.png",
@@ -852,6 +880,7 @@ export const projects: Project[] = [
     "slug": "emergent-garden",
     "title": "Emergent Garden",
     "group": "More projects",
+    "filterCategory": "Game",
     "category": "Creative coding / Simulation",
     "summary": "Interactive particle system exploring emergent behaviour.",
     "image": "images/emergent-garden.png",
@@ -881,6 +910,7 @@ export const projects: Project[] = [
     "slug": "further-down-still",
     "title": "Further Down, Still",
     "group": "More projects",
+    "filterCategory": "Game",
     "category": "Game development / 2D action",
     "summary": "A 2D action game about descent and persistence.",
     "image": "images/further-down-still.png",

@@ -8,7 +8,7 @@ Built with **Svelte 5, SvelteKit 3, and TypeScript**, with fully static output f
 
 ## Explore
 
-Projects / Previous Work contains 16 entries grouped into research, websites and previous work, games and simulation, and more projects. Research includes three linked thesis parts and retinal OCT classification. Every entry has its own address, such as `/projects/pixel-tower-defense/`, so projects can be bookmarked, shared, opened in a new tab, or reached using browser Back and Forward.
+The Portfolio panel contains 17 entries grouped into research, websites and previous work, games and simulation, and more projects. Research includes three linked thesis parts, endometrial biopsy tumor annotation, and retinal OCT classification. Every entry has its own address, such as `/projects/pixel-tower-defense/`, so projects can be bookmarked, shared, opened in a new tab, or reached using browser Back and Forward.
 
 - [GitHub](https://github.com/MikeDiaz1)
 - [LinkedIn](https://www.linkedin.com/in/michael-diaz-stewart-7547ab271/)
@@ -74,8 +74,9 @@ Add or edit entries in the `projects` array. Every entry becomes a sidebar card 
 - Use a unique, URL-friendly slug, such as `my-project`. Keep published slugs stable so existing links continue to work.
 - Use `aliases` when renaming a project. `/projects/nostalgia-simulator/` still opens Nostalgia Desktop, whose current address is `/projects/nostalgia-desktop/`.
 - Set `group` for the sidebar heading and `format` to `research`, `gallery`, `website`, `compact`, or `placeholder` for the appropriate layout.
+- Set `filterCategory` to `Machine Learning`, `Game`, or `Web`. The sidebar's All filter is selected initially; selecting a category narrows the list, and selecting All restores every project in its original order.
 - Put images in `static/images/projects/` and set `image` to its path without a leading slash. Supply the actual `imageWidth` and `imageHeight`, descriptive `imageAlt` text, and an optional `imageCaption`.
-- Use `facts` for role, tools, dates, or context. `results` and `resultNote` can show research metrics with their evaluation context.
+- Use `results` and `resultNote` to show research metrics with their evaluation context. Project headers use a single divider below the summary.
 - Use `sections` for the project story and `links` for live demos, papers, or repositories. Resource links should use complete URLs.
 - Add `gallery` images with dimensions, captions, and optional `portrait: true`. Images retain their proportions and open at full size. `related` lists project slugs for the thesis navigation.
 - Rebuild after changing content.

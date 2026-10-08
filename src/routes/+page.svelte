@@ -39,7 +39,7 @@
                   <a href={entry.organisationUrl}>{entry.organisation}</a>
                 {:else}
                   {entry.organisation}
-                {/if}<span class="employment-type"> · {entry.employment}</span>
+                {/if}<span class="employment-type"><span class="employment-divider" aria-hidden="true"> · </span>{entry.employment}</span>
               </p>
             </div>
           </div>

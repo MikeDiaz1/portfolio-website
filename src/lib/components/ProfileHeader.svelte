@@ -24,6 +24,7 @@
     <span class="identity-copy">
       <span class="profile-name">{profile.name}</span>
       <span class="profile-tagline">{profile.tagline}</span>
+      <span class="profile-statement">{profile.statement}</span>
     </span>
   </a>
   <nav class="profile-links" aria-label="Profile links">

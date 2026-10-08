@@ -7,6 +7,7 @@ export interface ProfileLink {
 export const profile = {
   name: 'Michael Diaz-Stewart',
   tagline: 'Machine learning / Healthcare / Full-stack software',
+  statement: 'Building practical AI systems at the intersection of biology, medicine, and software.',
   // Paths are relative to static/. Leave empty to use the silhouette.
   avatar: 'images/selfie.jpg',
   // Add your real destinations. Empty destinations render as unavailable labels.
@@ -37,7 +38,7 @@ export const experience: Experience[] = [
   {
     date: 'Aug 2023 – Present',
     title: 'Graduate Research Assistant',
-    organisation: 'AI in Medicine Lab, UBC',
+    organisation: 'AI in Medicine Lab',
     organisationUrl: 'https://aimlab.ca/',
     employment: 'Permanent full-time',
     location: 'Vancouver, BC, Canada',
@@ -75,7 +76,9 @@ export const experience: Experience[] = [
     arrangement: 'Remote',
     initials: 'KS',
     logo: 'images/kyo_logo.jpg',
-    bullets: []
+    bullets: [
+      'Lesson planning and teaching complex concepts in an easy-to-understand way'
+    ]
   },
   {
     date: 'Apr 2023 – Jul 2023',
@@ -87,7 +90,9 @@ export const experience: Experience[] = [
     arrangement: 'On-site',
     initials: 'CRx',
     logo: 'images/carerxcorp_logo.jpg',
-    bullets: []
+    bullets: [
+      'Compounding, aliquoting, and packaging various medications'
+    ]
   },
   {
     date: 'Nov 2017 – Oct 2018',
@@ -99,7 +104,9 @@ export const experience: Experience[] = [
     arrangement: 'On-site',
     initials: 'S',
     logo: 'images/stafits_logo.jpg',
-    bullets: []
+    bullets: [
+      'Full-stack web and mobile applications development in a startup environment'
+    ]
   }
 ];
 

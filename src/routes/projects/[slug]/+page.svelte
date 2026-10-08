@@ -16,7 +16,7 @@
 {#key data.project.slug}
   <article class="project-detail" data-format={data.project.format} aria-labelledby="project-title">
     <div class="project-toolbar section-label">
-      <span>Projects / Previous Work</span>
+      <span>Portfolio</span>
       <a class="back-link" href={resolve('/')}><Icon name="back" size={15} />Back to overview</a>
     </div>
 
@@ -26,13 +26,7 @@
       <p class="project-lead">{data.project.summary}</p>
     </header>
 
-    {#if data.project.facts?.length}
-      <dl class="project-facts">
-        {#each data.project.facts as fact}
-          <div><dt>{fact.label}</dt><dd>{fact.value}</dd></div>
-        {/each}
-      </dl>
-    {/if}
+    <hr class="project-divider" />
 
     {#if data.project.format === 'placeholder'}
       <p class="placeholder-notice">More details to come. This is a placeholder overview with illustrative artwork.</p>
