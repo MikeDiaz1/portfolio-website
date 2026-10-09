@@ -38,12 +38,12 @@ The included [workflow](.github/workflows/deploy.yml) checks, builds and deploys
 
 1. Push the repository to GitHub.
 2. In **Settings → Pages**, select **GitHub Actions** as the build source.
-3. Push to `main` or run **Actions → Deploy to GitHub Pages → Run workflow**.
+3. Push to `master` or run **Actions → Deploy to GitHub Pages → Run workflow**.
 4. Open the URL shown by the completed deployment.
 
 The site path is configured automatically. For a custom domain, set it in **Settings → Pages** before deploying.
 
-If your default branch is not `main`, update `on.push.branches` in the workflow.
+If your default branch is not `master`, update `on.push.branches` in the workflow.
 
 ## License
 
