@@ -708,6 +708,38 @@ export const projects: Project[] = [
     ]
   },
   {
+    "slug": "portfolio-website",
+    "title": "Personal portfolio website",
+    "group": "Websites & previous work",
+    "filterCategory": "Web",
+    "category": "Web development / Portfolio",
+    "summary": "A home for my research, software and interactive projects.",
+    "image": "images/projects/portfolio-website.webp",
+    "imageAlt": "My portfolio homepage showing work experience and education alongside a filterable project sidebar.",
+    "imageWidth": 1440,
+    "imageHeight": 774,
+    "imageCaption": "The overview brings my background and projects together in a two-column layout.",
+    "format": "website",
+    "introduction": "I built this portfolio with Codex and GPT-6 Astra. The framework is Svelte + TypeScript, and I deploy on GitHub Pages. The purpose of the website is to bring together my research, software projects and professional background. Each project has its own page, with screenshots, context and links to explore the work further.",
+    "sections": [
+      {
+        "title": "Browsing the work",
+        "body": "A filterable sidebar keeps projects within reach while reading, with browser navigation preserving your place. The layout adapts to smaller screens, and image overlays let visitors inspect screenshots at full resolution. Responsive WebP images and static pages keep the site lightweight for hosting on GitHub Pages."
+      }
+    ],
+    "tags": [
+      "Svelte",
+      "Agentic Development",
+      "Web Development"
+    ],
+    "links": [
+      {
+        "label": "View on GitHub",
+        "href": "https://github.com/MikeDiaz1/portfolio-website"
+      }
+    ]
+  },
+  {
     "slug": "stafits",
     "title": "Stafits website and app",
     "group": "Websites & previous work",

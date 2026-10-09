@@ -54,6 +54,10 @@ Game release dates are approximate (Google Play, circa 2017), as supplied by Mic
 
 Website descriptions use the public pages for context and Michael's account for his responsibilities. The competition entry describes coordination and communication, without attributing competitors' models to Michael.
 
+## Personal portfolio website
+
+Michael requested an entry for this website immediately after AIM Lab, linking to [its GitHub repository](https://github.com/MikeDiaz1/portfolio-website). The description is based on this repository's implementation. `portfolio-website.webp` is a full-size WebP conversion of the verified homepage screenshot in `docs/preview.jpg`.
+
 ## Nostalgia Desktop
 
 Michael supplied the feature description and confirmed the Phaser, TypeScript and Vite stack. The project is an XP-era desktop experience with apps, games, music, sound effects and local persistence. Its screenshots are `nostalgia-desktop.webp` (main desktop), `nostalgia-drive-care.webp` (Drive Care in rainy weather) and `nostalgia-apps.webp` (HomeAmp, Calculator and Parcel Check at night). They replace the earlier illustrative placeholder; the page retains the Nostalgia Desktop title and its older `nostalgia-simulator` URL alias.
