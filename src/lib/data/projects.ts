@@ -713,18 +713,22 @@ export const projects: Project[] = [
     "group": "Websites & previous work",
     "filterCategory": "Web",
     "category": "Web development / Portfolio",
-    "summary": "A home for my research, software and interactive projects.",
+    "summary": "My portfolio, built with Codex and shared as a reusable website template.",
     "image": "images/projects/portfolio-website.webp",
-    "imageAlt": "My portfolio homepage showing work experience and education alongside a filterable project sidebar.",
-    "imageWidth": 1440,
-    "imageHeight": 774,
-    "imageCaption": "The overview brings my background and projects together in a two-column layout.",
+    "imageAlt": "The portfolio website’s GitHub repository, showing its README, homepage preview and language breakdown.",
+    "imageWidth": 1237,
+    "imageHeight": 824,
+    "imageCaption": "The GitHub repository includes the website code, setup instructions and MIT license with content exclusions.",
     "format": "website",
-    "introduction": "I built this portfolio with Codex and GPT-6 Astra. The framework is Svelte + TypeScript, and I deploy on GitHub Pages. The purpose of the website is to bring together my research, software projects and professional background. Each project has its own page, with screenshots, context and links to explore the work further.",
+    "introduction": "I built this portfolio with Codex and GPT-6 Astra, using SvelteKit, Svelte and TypeScript. Hosted as a static site on GitHub Pages, it brings together my research, software projects and professional background. Each project has its own page with screenshots, context and links.",
     "sections": [
       {
         "title": "Browsing the work",
         "body": "A filterable sidebar keeps projects within reach while reading, with browser navigation preserving your place. The layout adapts to smaller screens, and image overlays let visitors inspect screenshots at full resolution. Responsive WebP images and static pages keep the site lightweight for hosting on GitHub Pages."
+      },
+      {
+        "title": "Make it your own",
+        "body": "The website code is MIT-licensed, so you can reuse and adapt it for your own portfolio while retaining the copyright and license notices. The README covers local setup, customization and GitHub Pages deployment. Replace the text and personal assets with your own: portfolio content, research, images and separate showcased projects are excluded from the code license, with rights retained by their respective owners."
       }
     ],
     "tags": [
