@@ -11,6 +11,18 @@ if (basePath !== '' && (!basePath.startsWith('/') || basePath.endsWith('/'))) {
 
 export default defineConfig({
   plugins: [
+    {
+      name: 'legacy-portfolio-redirect',
+      configureServer(server) {
+        // Vite dev does not resolve static directory indexes like Pages does.
+        server.middlewares.use((request, response, next) => {
+          const url = new URL(request.url ?? '/', 'http://localhost');
+          if (url.pathname !== '/portfolio-website' && url.pathname !== '/portfolio-website/') return next();
+          response.writeHead(307, { Location: '/' + url.search });
+          response.end();
+        });
+      }
+    },
     sveltekit({
       adapter: adapter({ strict: true }),
       paths: { base: basePath as '' | `/${string}`, relative: false }
