@@ -33,7 +33,7 @@
     {#each profile.links as link, index}
       {#if !link.icon && index > 0 && profile.links[index - 1].icon}<span class="nav-divider" aria-hidden="true"></span>{/if}
       {#if link.href}
-        <a href={linkDestination(link.href)} class="profile-link" rel={link.href.startsWith('http') ? 'me noopener noreferrer' : undefined}>
+        <a href={linkDestination(link.href)} download={link.download} class="profile-link" rel={link.href.startsWith('http') ? 'me noopener noreferrer' : undefined}>
           {#if link.icon}<Icon name={link.icon} size={26} />{/if}
           <span>{link.label}</span>
         </a>

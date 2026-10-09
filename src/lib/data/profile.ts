@@ -1,6 +1,7 @@
 export interface ProfileLink {
   label: string;
   href: string;
+  download?: string;
   icon?: 'github' | 'linkedin' | 'kaggle';
 }
 
@@ -15,7 +16,7 @@ export const profile = {
     { label: 'GitHub', href: 'https://github.com/MikeDiaz1', icon: 'github' },
     { label: 'Kaggle', href: 'https://www.kaggle.com/michaeldiazstewart', icon: 'kaggle' },
     { label: 'LinkedIn', href: 'https://www.linkedin.com/in/michael-diaz-stewart-7547ab271/', icon: 'linkedin' },
-    { label: 'Resume', href: '' }
+    { label: 'Resume', href: 'Michael_Diaz-Stewart_Resume.pdf', download: 'Michael_Diaz-Stewart_Resume.pdf' }
   ] satisfies ProfileLink[]
 };
 
