@@ -34,72 +34,19 @@ export interface Project {
   related?: string[];
   tags: string[];
   links: { label: string; href: string }[];
+  featuredLink?: { label: string; href: string; description: string };
 }
 
 // Sources and image provenance are documented in docs/project-sources.md.
 // Published game dates are approximate, as supplied by Michael.
 export const projects: Project[] = [
   {
-    "slug": "cms-reference-labels",
-    "title": "Cancer subtype reference stability",
-    "group": "Research",
-    "filterCategory": "Machine Learning",
-    "category": "Computational pathology",
-    "summary": "Investigating the reliability of CMS labels.",
-    "image": "images/projects/cms_classifiers.png",
-    "imageAlt": "The same expression data produces CMS2, CMS4 or an unclassified result with three different classifiers.",
-    "imageWidth": 852,
-    "imageHeight": 448,
-    "imageCaption": "Different classifiers can assign different consensus molecular subtypes to the same sample.",
-    "format": "research",
-    "facts": [
-      {
-        "label": "Context",
-        "value": "Thesis / Part 1 of 3"
-      },
-      {
-        "label": "Focus",
-        "value": "Reference-label stability"
-      },
-      {
-        "label": "Cohort",
-        "value": "Personalized OncoGenomics"
-      }
-    ],
-    "introduction": "Before training an image model to predict a molecular subtype, I wanted to understand how reliable the target labels were. This part of my thesis compared consensus molecular subtype (CMS) classifiers in colorectal cancer and examined whether their labels matched the expected biology.",
-    "sections": [
-      {
-        "title": "A reference label depends on the protocol",
-        "body": "I compared Random Forest, Single Sample Predictor and NanoString FFPE approaches using gene-expression data. The analysis considered classifier agreement, indeterminate calls, and the effects of changing thresholds and preprocessing. Random Forest and Single Sample Predictor had a Cohen’s kappa of 0.56 among jointly classified cases, but agreement fell to 0.28 when indeterminate calls were retained. Changing settings within a classifier also changed the assignments, and literature methods varied. These choices affect what an image model is being asked to learn."
-      }
-    ],
-    "gallery": [
-      {
-        "src": "images/projects/varied_methods.png",
-        "alt": "Three confusion matrices comparing CMS assignments under different treatments of indeterminate cases.",
-        "width": 1653,
-        "height": 409,
-        "caption": "Agreement changes with the treatment of indeterminate calls. Figure from my thesis analysis."
-      }
-    ],
-    "tags": [
-      "Label Quality",
-      "Model Evaluation",
-      "Gene Expression"
-    ],
-    "links": [],
-    "related": [
-      "medical-image-ai",
-      "survival-modelling"
-    ]
-  },
-  {
     "slug": "medical-image-ai",
     "title": "Image-based biomarker prediction",
-    "group": "Research",
+    "group": "Machine Learning",
     "filterCategory": "Machine Learning",
     "category": "Medical-image machine learning",
-    "summary": "Testing what histology can tell us about colorectal cancer biomarkers.",
+    "summary": "Testing what histology can tell us about colorectal cancer.",
     "image": "images/projects/molecular-pipeline.webp",
     "imageAlt": "Cohorts, the histopathology pipeline and the four evaluated tasks: CMS, MSI, mutations and survival.",
     "imageWidth": 3206,
@@ -172,7 +119,7 @@ export const projects: Project[] = [
   {
     "slug": "survival-modelling",
     "title": "Image-based direct survival prediction",
-    "group": "Research",
+    "group": "Machine Learning",
     "filterCategory": "Machine Learning",
     "category": "Medical-image machine learning",
     "summary": "Investigating why pooled survival results weakened within individual cohorts.",
@@ -235,9 +182,63 @@ export const projects: Project[] = [
     ]
   },
   {
+    "slug": "cms-reference-labels",
+    "title": "Cancer subtype reference stability",
+    "group": "Machine Learning",
+    "filterCategory": "Machine Learning",
+    "category": "Computational pathology",
+    "summary": "Investigating the reliability of CMS labels.",
+    "image": "images/projects/cms_classifiers.png",
+    "imageAlt": "The same expression data produces CMS2, CMS4 or an unclassified result with three different classifiers.",
+    "imageWidth": 852,
+    "imageHeight": 448,
+    "imageCaption": "Different classifiers can assign different consensus molecular subtypes to the same sample.",
+    "format": "research",
+    "facts": [
+      {
+        "label": "Context",
+        "value": "Thesis / Part 1 of 3"
+      },
+      {
+        "label": "Focus",
+        "value": "Reference-label stability"
+      },
+      {
+        "label": "Cohort",
+        "value": "Personalized OncoGenomics"
+      }
+    ],
+    "introduction": "Before training an image model to predict a molecular subtype, I wanted to understand how reliable the target labels were. This part of my thesis compared consensus molecular subtype (CMS) classifiers in colorectal cancer and examined whether their labels matched the expected biology.",
+    "sections": [
+      {
+        "title": "A reference label depends on the protocol",
+        "body": "I compared Random Forest, Single Sample Predictor and NanoString FFPE approaches using gene-expression data. The analysis considered classifier agreement, indeterminate calls, and the effects of changing thresholds and preprocessing. Random Forest and Single Sample Predictor had a Cohen’s kappa of 0.56 among jointly classified cases, but agreement fell to 0.28 when indeterminate calls were retained. Changing settings within a classifier also changed the assignments, and literature methods varied. These choices affect what an image model is being asked to learn."
+      }
+    ],
+    "gallery": [
+      {
+        "src": "images/projects/varied_methods.png",
+        "alt": "Three confusion matrices comparing CMS assignments under different treatments of indeterminate cases.",
+        "width": 1653,
+        "height": 409,
+        "caption": "Agreement changes with the treatment of indeterminate calls. Figure from my thesis analysis."
+      }
+    ],
+    "tags": [
+      "Label Quality",
+      "Model Evaluation",
+      "Gene Expression"
+    ],
+    "links": [],
+    "related": [
+      "medical-image-ai",
+      "survival-modelling"
+    ]
+  },
+  {
     "slug": "endometrial-biopsy-adaptation",
     "title": "Adapting tumor annotation to biopsies",
-    "group": "Research",
+    "group": "Machine Learning",
     "filterCategory": "Machine Learning",
     "category": "Computational pathology",
     "summary": "Improving tumor annotation on endometrial biopsy slides through supervised fine-tuning and threshold selection.",
@@ -272,7 +273,7 @@ export const projects: Project[] = [
   {
     "slug": "retinal-oct",
     "title": "Retinal disease classifier",
-    "group": "Research",
+    "group": "Machine Learning",
     "filterCategory": "Machine Learning",
     "category": "Computer vision",
     "summary": "Comparing ConvNet architectures for retinal image classification.",
@@ -280,7 +281,7 @@ export const projects: Project[] = [
     "imageAlt": "A retinal OCT scan with a Grad-CAM heatmap highlighting part of the retinal structure.",
     "imageWidth": 1024,
     "imageHeight": 496,
-    "imageCaption": "Grad-CAM from the project. Underlying OCT images are from the public Kermany et al. dataset.",
+    "imageCaption": "Grad-CAM from the project, showing areas of high attention for a convolutional model.",
     "format": "research",
     "facts": [
       {
@@ -328,7 +329,7 @@ export const projects: Project[] = [
         "alt": "Example OCT images labelled CNV, DME, drusen and normal.",
         "width": 650,
         "height": 130,
-        "caption": "The four image classes. OCT data credited to Kermany et al. in the original presentation."
+        "caption": "The four image classes. Credit to Kermany et al."
       }
     ],
     "tags": [
@@ -350,7 +351,7 @@ export const projects: Project[] = [
   {
     "slug": "ubc-ocean",
     "title": "UBC-OCEAN Competition",
-    "group": "Research",
+    "group": "Machine Learning",
     "filterCategory": "Machine Learning",
     "category": "Research community / Kaggle",
     "summary": "Helping organize an ovarian cancer image-classification competition.",
@@ -395,6 +396,412 @@ export const projects: Project[] = [
         "href": "https://www.kaggle.com/michaeldiazstewart"
       }
     ]
+  },
+  {
+    "slug": "further-down-still",
+    "title": "Further Down, Still",
+    "group": "Games & simulation",
+    "filterCategory": "Game",
+    "category": "Game development / Incremental dungeon diver",
+    "summary": "Descend through gothic arenas, and return stronger.",
+    "image": "images/projects/further-down-still-title.png",
+    "imageAlt": "Further Down, Still title screen with a cloaked figure at a campfire overlooking a vast monochrome gothic city, beside the Descend button.",
+    "imageWidth": 1919,
+    "imageHeight": 1079,
+    "imageCaption": "The campfire and title screen, with a monumental gothic city beyond.",
+    "format": "gallery",
+    "introduction": "I built Further Down, Still in Phaser 4 and TypeScript, leveraging agentic workflows (Codex, Claude Code). It is a dark incremental dungeon diver with 'Vampire Survivors'-like combat. You choose the build and upgrades, watch them come together, and push deeper before returning to the campfire to invest your rewards in the next descent.",
+    "sections": [
+      {
+        "title": "An emerging combat engine",
+        "body": "Three classes, layered weapon unlocks, branching upgrades and late-run capstones give each build its direction. Sixteen authored depths place it against overlapping enemy waves and bosses in fixed-camera arenas. The decisions are about how the weapons work together and how much further the build can carry you."
+      },
+      {
+        "title": "",
+        "body": "Earned Ash pays for permanent upgrades at the campfire. A descent-themed progression tree unlocks Prayers and other lasting advantages, while 2× and 4× Turbo modes speed up familiar parts of repeat runs. Each return is an opportunity to invest, adjust the build and try another descent."
+      },
+      {
+        "title": "Data after each run",
+        "body": "Run records show weapon contributions, incoming damage and boss health remaining, alongside the last eight settled builds. These breakdowns make it easier to see what carried a run and what to change next. Persistent saves keep progression between browser sessions."
+      },
+      {
+        "title": "Gustave Doré-inspired atmosphere",
+        "body": "The art reflects my appreciation of biblical/gothic engravings, with detailed monochrome characters, monumental environments and restrained flashes of color. Music supports the descent, with the soundtrack available in the linked public Suno playlist."
+      }
+    ],
+    "gallery": [
+      {
+        "src": "images/projects/further-down-still-progression.png",
+        "alt": "A descending progression tree beside permanent upgrades for Fury, Fortitude and Madness, with Prayers and Turbo unlocks.",
+        "width": 1122,
+        "height": 652,
+        "caption": "Spend Ash on permanent upgrades and unlock new options through the progression tree."
+      },
+      {
+        "src": "images/projects/further-down-still-combat.png",
+        "alt": "Automatic combat in a stone arena surrounded by flooded gothic ruins and towering statues, with projectiles radiating around the player.",
+        "width": 1919,
+        "height": 1079,
+        "caption": "A build in action within one of the game's fixed-camera arenas."
+      },
+      {
+        "src": "images/projects/further-down-still-upgrades.png",
+        "alt": "A Censer Host upgrade choice between Stronger Bolts and Greater Reach over a dark arena.",
+        "width": 1919,
+        "height": 1079,
+        "caption": "Branching weapon upgrades shape the build during a descent."
+      },
+      {
+        "src": "images/projects/further-down-still-records.png",
+        "alt": "The Back to the Embers run summary showing depths cleared, Ash earned, descent time and damage contributions from two weapons.",
+        "width": 1919,
+        "height": 1079,
+        "caption": "The end-of-run breakdown shows rewards, weapon contributions and the choices made along the way."
+      }
+    ],
+    "tags": [
+      "Phaser 2D",
+      "Game Design",
+      "Agentic Development"
+    ],
+    "links": [],
+    "featuredLink": {
+      "label": "Listen to the soundtrack",
+      "href": "https://suno.com/playlist/fdcfd632-e15a-418e-b713-d1585b5f406c",
+      "description": "Explore the game's music in the public Suno playlist."
+    }
+  },
+  {
+    "slug": "nostalgia-desktop",
+    "aliases": [
+      "nostalgia-simulator"
+    ],
+    "title": "Nostalgic desktop",
+    "group": "Games & simulation",
+    "filterCategory": "Game",
+    "category": "Interactive experience / Digital nostalgia",
+    "summary": "An XP-era desktop playground with games, apps, music and nostalgic sound effects.",
+    "image": "images/projects/nostalgia-desktop.png",
+    "imageAlt": "Nostalgia Desktop showing an XP-inspired blue taskbar, rolling green hills, app icons, a desktop dog and a fictional system update notice.",
+    "imageWidth": 1680,
+    "imageHeight": 945,
+    "imageCaption": "HomeCentral 98, the fictional desktop at the heart of Nostalgia Desktop.",
+    "format": "gallery",
+    "introduction": "I built Nostalgia Desktop with Phaser and TypeScript, and leveraging Codex and Claude Code for agentic workflows. It recreates the feeling of a family computer in the late 1990s and early 2000s: an XP-inspired desktop full of apps, games, music and sound effects. Everything is available from the start, so you can explore at your own pace.",
+    "sections": [
+      {
+        "title": "Games and random tools",
+        "body": "The fictional HomeCentral 98 desktop has draggable windows, a Start menu, customizable cursors, fake system notices and a replayable BIOS startup. Apps include the HomeAmp music player, fictional instant messaging, a CD wallet and Drive Care, alongside a desktop destruction kit."
+      },
+      {
+        "title": "",
+        "body": "Play Snake, the asteroid-style Debris Field, the Minesweeper-inspired Parcel Check, a memory game or pinball with multiball. HomePaint lets you draw, turn your artwork into wallpaper, or print it into a scrapbook, complete with simulated paper jams. A desktop dog can be petted, taught tricks and sent to fetch or discover buried collectibles."
+      },
+      {
+        "title": "Atmosphere and personalization",
+        "body": "Music, nostalgic sound effects, changing weather, snow on window frames, day and night themes, and animated screensavers give the desktop its atmosphere. Settings, artwork, conversations and collections persist locally, with manual Save and Load options."
+      }
+    ],
+    "gallery": [
+      {
+        "src": "images/projects/nostalgia-drive-care.png",
+        "alt": "The Drive Care app displaying a colorful disk organization grid in an XP-style window, with rain falling across the desktop behind it.",
+        "width": 1681,
+        "height": 946,
+        "caption": "Drive Care's disk organization activity, with rainy weather on the desktop."
+      },
+      {
+        "src": "images/projects/nostalgia-apps.png",
+        "alt": "The HomeAmp music player, Calculator and Minesweeper-inspired Parcel Check game open together on the desktop at night.",
+        "width": 1680,
+        "height": 947,
+        "caption": "HomeAmp, Calculator and Parcel Check running together in the desktop's night theme."
+      }
+    ],
+    "tags": [
+      "Phaser 2D",
+      "TypeScript",
+      "Agentic Development"
+    ],
+    "links": []
+  },
+  {
+    "slug": "emergent-sandbox",
+    "aliases": ["emergent-garden", "emergence-playground"],
+    "title": "Emergent Sandbox",
+    "group": "Games & simulation",
+    "filterCategory": "Game",
+    "category": "Creative coding / Simulation",
+    "summary": "A particle sandbox where simple attraction and repulsion rules create clusters, chasing loops and moving swarms.",
+    "image": "images/projects/emergence-playground.png",
+    "imageAlt": "Emergent Sandbox showing clusters of amber, mint, lilac and pink particles alongside starting presets and a directed interaction matrix.",
+    "imageWidth": 1627,
+    "imageHeight": 949,
+    "imageCaption": "The Color islands preset: particles gather into clusters according to their attraction and repulsion rules.",
+    "format": "gallery",
+    "introduction": "I built Emergent Sandbox with Codex as an open-ended simulation for emergent behavior. Simple attraction and repulsion rules produce clusters, chasing loops, orbiting pairs and moving swarms. The program runs locally in the browser.",
+    "sections": [
+      {
+        "title": "Changing the rules",
+        "body": "An interaction matrix controls how two to eight particle colors respond to each other. The rules can be asymmetric: one color can chase another without being chased back. Live controls adjust force strength, interaction range, damping, gravity and optional Fibonacci distance bands, making it easy to explore how small changes affect the larger pattern."
+      },
+      {
+        "title": "Interacting with the scene",
+        "body": "Grab, spawn or erase particles, paint solid obstacles, and explore the world with pan and zoom. Selecting a particle reveals the forces acting on it, while live measurements track clustering, color segregation, heading diversity and organized activity. These tools connect the visible patterns to the local interactions that produce them."
+      },
+      {
+        "title": "Repeatable experiments and automated exploration",
+        "body": "Pause the simulation, advance one step or replay a seeded scene to examine how it develops. Background searches explore rule combinations for interesting patterns, and configurations can be saved, loaded or shared through JSON. This makes it possible to return to a setup and compare the effects of different choices."
+      }
+    ],
+    "gallery": [
+      {
+        "src": "images/projects/emergence-playground-rules.png",
+        "alt": "Four particle colors forming a compact arrangement beside an asymmetric interaction matrix and live controls for range, force strength and damping.",
+        "width": 1635,
+        "height": 943,
+        "caption": "Asymmetric rules and live physics controls produce different collective patterns."
+      },
+      {
+        "src": "images/projects/emergence-playground-forces.png",
+        "alt": "A selected particle with a circular neighborhood and force arrows to nearby particles, beside force falloff, gravity and attraction controls.",
+        "width": 1668,
+        "height": 941,
+        "caption": "Inspect an individual particle to see the forces acting on it."
+      }
+    ],
+    "tags": [
+      "TypeScript",
+      "Particle Simulation",
+      "Agentic Development"
+    ],
+    "links": []
+  },
+  {
+    "slug": "presentations",
+    "title": "Presentations",
+    "group": "Games & simulation",
+    "filterCategory": "Game",
+    "category": "Healthcare simulation",
+    "summary": "An emergency-room patient simulation for practising symptom recognition.",
+    "image": "images/projects/presentations.png",
+    "imageAlt": "Presentations simulation showing an emergency-unit patient form, diagnostic choices and feedback on an incorrect diagnosis in an illustrated consultation room.",
+    "imageWidth": 1920,
+    "imageHeight": 1080,
+    "imageCaption": "The simulation combines patient information, diagnostic choices and explanatory feedback.",
+    "format": "gallery",
+    "facts": [
+      {
+        "label": "Context",
+        "value": "Independent project"
+      },
+      {
+        "label": "Started",
+        "value": "Late 2022"
+      },
+      {
+        "label": "Tools",
+        "value": "Unity / C#"
+      }
+    ],
+    "introduction": "Presentations is a Unity simulation of patient presentations in an emergency-room setting. I built it to model diseases with software, and to practise recognizing disease patterns from a patient’s demographics, symptoms and vital signs.",
+    "sections": [
+      {
+        "title": "Generating a patient",
+        "body": "The game covers 18 disease presentations. It generates demographic and risk-factor information such as age, weight, activity, smoking and family history, uses those factors to weight disease likelihood, and then generates a symptom profile. Players choose a diagnosis and receive feedback. Hover text explains physiological ranges and terminology, giving the case more context as the player works through it."
+      },
+      {
+        "title": "",
+        "body": "Hand-written rules made it difficult to represent the interplay between many risk factors and symptoms. Working on those relationships became part of my motivation to explore machine learning."
+      }
+    ],
+    "tags": [
+      "Unity",
+      "C#",
+      "Simulation",
+      "Medical Education"
+    ],
+    "links": [
+      {
+        "label": "Screenshots and project context",
+        "href": "https://imgur.com/a/presentations-Q7Iau9Y"
+      }
+    ]
+  },
+  {
+    "slug": "pixel-tower-defense",
+    "title": "Pixel Tower Defense",
+    "group": "Games & simulation",
+    "filterCategory": "Game",
+    "category": "3D mobile game",
+    "summary": "A simple tower defense game published on Google Play around 2017.",
+    "image": "images/projects/pixel-td-title.png",
+    "imageAlt": "Pixel Tower Defense title screen with a neon turquoise particle background, a Play button and a credit to Michael Diaz-Stewart.",
+    "imageWidth": 1920,
+    "imageHeight": 1080,
+    "imageCaption": "Pixel Tower Defense title screen.",
+    "format": "gallery",
+    "facts": [
+      {
+        "label": "Role",
+        "value": "Independent developer"
+      },
+      {
+        "label": "Released",
+        "value": "Google Play / circa 2017"
+      },
+      {
+        "label": "Tools",
+        "value": "Unity / C#"
+      }
+    ],
+    "introduction": "I built Pixel Tower Defense in Unity and C#, taking a 3D tower defense game with simple graphics through to a Google Play release around 2017. Players defend against endless waves of enemies by placing and upgrading towers.",
+    "sections": [
+      {
+        "title": "Developing the game",
+        "body": "The project combined a 3D playfield with tower selection, upgrade controls and wave progression. The visual style uses simple geometric forms, bright outlines and strong colour contrasts."
+      },
+      {
+        "title": "",
+        "body": "The progress images show the game moving from an early prototype to a more developed interface, a dedicated upgrades menu and baked lighting. One screenshot was annotated for an in-game instructional diagram."
+      }
+    ],
+    "gallery": [
+      {
+        "src": "images/projects/pixel-td-prototype.webp",
+        "alt": "An earlier Pixel Tower Defense interface with handwritten labels explaining the controls.",
+        "width": 1165,
+        "height": 657,
+        "caption": "An earlier interface, annotated for an instructional diagram."
+      },
+      {
+        "src": "images/projects/pixel-td-upgrades.webp",
+        "alt": "Tower Upgrades panel showing damage, attack rate and range with an upgrade button.",
+        "width": 1800,
+        "height": 1013,
+        "caption": "Tower upgrades menu."
+      }
+    ],
+    "tags": [
+      "Unity",
+      "C#",
+      "3D",
+      "Android"
+    ],
+    "links": [
+      {
+        "label": "Development screenshots",
+        "href": "https://imgur.com/a/pixel-td-progress-Ye8kb"
+      }
+    ]
+  },
+  {
+    "slug": "expand-land",
+    "title": "Expand Land",
+    "group": "Games & simulation",
+    "filterCategory": "Game",
+    "category": "2D mobile puzzle game",
+    "summary": "Fill the playfield while avoiding obstacles. Published on Google Play around 2017.",
+    "image": "images/projects/expand-land.png",
+    "imageAlt": "Expand Land puzzle gameplay with turquoise circles filling a yellow-green playfield and moving star-shaped obstacles.",
+    "imageWidth": 2960,
+    "imageHeight": 1440,
+    "imageCaption": "Growing circles to cover the playfield while avoiding obstacles.",
+    "format": "gallery",
+    "facts": [
+      {
+        "label": "Context",
+        "value": "My first mobile app"
+      },
+      {
+        "label": "Released",
+        "value": "Google Play / circa 2017"
+      },
+      {
+        "label": "Tools",
+        "value": "Unity / C#"
+      }
+    ],
+    "introduction": "Expand Land was my first mobile app: a simple 2D puzzle game built with Unity and C#. The goal is to fill as much space as possible while avoiding obstacles. I published it on Google Play around 2017.",
+    "sections": [
+      {
+        "title": "A simple spatial puzzle",
+        "body": "Players grow circles within the playfield, balancing coverage against the moving obstacles. The interface tracks the level, circles used, lives and percentage filled."
+      },
+      {
+        "title": "Taking it to mobile",
+        "body": "The project brought together the puzzle mechanics, level flow and mobile interface. The screenshots also show restart and rewarded-ad retry options from the game."
+      }
+    ],
+    "gallery": [
+      {
+        "src": "images/projects/expand-land-play.png",
+        "alt": "Expand Land level 2 with blue circles covering 65 percent of a white playfield, black star-shaped obstacles and three lives remaining.",
+        "width": 2960,
+        "height": 1440,
+        "caption": "Level 2 with 65% of the playfield covered."
+      },
+      {
+        "src": "images/projects/expand-land-retry.webp",
+        "alt": "Expand Land out-of-lives menu offering Restart and Watch Ad to Retry Level.",
+        "width": 447,
+        "height": 251,
+        "caption": "The retry screen."
+      }
+    ],
+    "tags": [
+      "Unity",
+      "C#",
+      "2D puzzles",
+      "Android"
+    ],
+    "links": [
+      {
+        "label": "Game screenshots",
+        "href": "https://imgur.com/a/expand-land-6LUE2BU"
+      }
+    ]
+  },
+  {
+    "slug": "simba-runescape",
+    "title": "RuneScape automation",
+    "group": "Games & simulation",
+    "filterCategory": "Game",
+    "category": "Scripting / Game automation",
+    "summary": "Writing Simba scripts to automate tasks in RuneScape.",
+    "image": "images/projects/simba-runescape.png",
+    "imageAlt": "Illustrative Old School RuneScape automation image with green boxes around trees and inventory slots.",
+    "imageWidth": 511,
+    "imageHeight": 528,
+    "imageCaption": "Illustrative OSRS automation image, not a capture of my own scripts.",
+    "format": "compact",
+    "facts": [
+      {
+        "label": "Context",
+        "value": "Personal scripting projects"
+      },
+      {
+        "label": "Tool",
+        "value": "Simba"
+      },
+      {
+        "label": "Game",
+        "value": "RuneScape"
+      }
+    ],
+    "introduction": "I wrote Simba scripts for botting in RuneScape. These were small automation projects built around observing the game state and carrying out repeated actions, such as gathering resources and managing inventory.",
+    "sections": [
+      {
+        "title": "Scripting a repeatable task",
+        "body": "The work was an early exercise in turning a game activity into a sequence of decisions and actions. It gave me practical experience with automation and debugging behaviour in an interactive environment. I no longer have a script or demo to share."
+      }
+    ],
+    "tags": [
+      "Simba",
+      "Scripting",
+      "Automation"
+    ],
+    "links": []
   },
   {
     "slug": "aim-lab-website",
@@ -616,325 +1023,6 @@ export const projects: Project[] = [
         "href": "https://imgur.com/a/XUpQi46"
       }
     ]
-  },
-  {
-    "slug": "presentations",
-    "title": "Presentations",
-    "group": "Games & simulation",
-    "filterCategory": "Game",
-    "category": "Healthcare simulation",
-    "summary": "An emergency-room patient simulation for practising symptom recognition.",
-    "image": "images/projects/presentations.png",
-    "imageAlt": "Presentations simulation showing an emergency-unit patient form, diagnostic choices and feedback on an incorrect diagnosis in an illustrated consultation room.",
-    "imageWidth": 1920,
-    "imageHeight": 1080,
-    "imageCaption": "The simulation combines patient information, diagnostic choices and explanatory feedback.",
-    "format": "gallery",
-    "facts": [
-      {
-        "label": "Context",
-        "value": "Independent project"
-      },
-      {
-        "label": "Started",
-        "value": "Late 2022"
-      },
-      {
-        "label": "Tools",
-        "value": "Unity / C#"
-      }
-    ],
-    "introduction": "Presentations is a Unity simulation of patient presentations in an emergency-room setting. I built it to model diseases with software, and to practise recognizing disease patterns from a patient’s demographics, symptoms and vital signs.",
-    "sections": [
-      {
-        "title": "Generating a patient",
-        "body": "The game covers 18 disease presentations. It generates demographic and risk-factor information such as age, weight, activity, smoking and family history, uses those factors to weight disease likelihood, and then generates a symptom profile. Players choose a diagnosis and receive feedback. Hover text explains physiological ranges and terminology, giving the case more context as the player works through it."
-      },
-      {
-        "title": "",
-        "body": "Hand-written rules made it difficult to represent the interplay between many risk factors and symptoms. Working on those relationships became part of my motivation to explore machine learning."
-      }
-    ],
-    "tags": [
-      "Unity",
-      "C#",
-      "Simulation",
-      "Medical Education"
-    ],
-    "links": [
-      {
-        "label": "Screenshots and project context",
-        "href": "https://imgur.com/a/presentations-Q7Iau9Y"
-      }
-    ]
-  },
-  {
-    "slug": "pixel-tower-defense",
-    "title": "Pixel Tower Defense",
-    "group": "Games & simulation",
-    "filterCategory": "Game",
-    "category": "3D mobile game",
-    "summary": "A simple tower defense game published on Google Play around 2017.",
-    "image": "images/projects/pixel-td-title.png",
-    "imageAlt": "Pixel Tower Defense title screen with a neon turquoise particle background, a Play button and a credit to Michael Diaz-Stewart.",
-    "imageWidth": 1920,
-    "imageHeight": 1080,
-    "imageCaption": "Pixel Tower Defense title screen.",
-    "format": "gallery",
-    "facts": [
-      {
-        "label": "Role",
-        "value": "Independent developer"
-      },
-      {
-        "label": "Released",
-        "value": "Google Play / circa 2017"
-      },
-      {
-        "label": "Tools",
-        "value": "Unity / C#"
-      }
-    ],
-    "introduction": "I built Pixel Tower Defense in Unity and C#, taking a 3D tower defense game with simple graphics through to a Google Play release around 2017. Players defend against endless waves of enemies by placing and upgrading towers.",
-    "sections": [
-      {
-        "title": "Developing the game",
-        "body": "The project combined a 3D playfield with tower selection, upgrade controls and wave progression. The visual style uses simple geometric forms, bright outlines and strong colour contrasts."
-      },
-      {
-        "title": "",
-        "body": "The progress images show the game moving from an early prototype to a more developed interface, a dedicated upgrades menu and baked lighting. One screenshot was annotated for an in-game instructional diagram."
-      }
-    ],
-    "gallery": [
-      {
-        "src": "images/projects/pixel-td-prototype.webp",
-        "alt": "An earlier Pixel Tower Defense interface with handwritten labels explaining the controls.",
-        "width": 1165,
-        "height": 657,
-        "caption": "An earlier interface, annotated for an instructional diagram."
-      },
-      {
-        "src": "images/projects/pixel-td-upgrades.webp",
-        "alt": "Tower Upgrades panel showing damage, attack rate and range with an upgrade button.",
-        "width": 1800,
-        "height": 1013,
-        "caption": "Tower upgrades menu."
-      }
-    ],
-    "tags": [
-      "Unity",
-      "C#",
-      "3D",
-      "Android"
-    ],
-    "links": [
-      {
-        "label": "Development screenshots",
-        "href": "https://imgur.com/a/pixel-td-progress-Ye8kb"
-      }
-    ]
-  },
-  {
-    "slug": "expand-land",
-    "title": "Expand Land",
-    "group": "Games & simulation",
-    "filterCategory": "Game",
-    "category": "2D mobile puzzle game",
-    "summary": "Fill the playfield while avoiding obstacles. Published on Google Play around 2017.",
-    "image": "images/projects/expand-land.png",
-    "imageAlt": "Expand Land puzzle gameplay with turquoise circles filling a yellow-green playfield and moving star-shaped obstacles.",
-    "imageWidth": 2960,
-    "imageHeight": 1440,
-    "imageCaption": "Growing circles to cover the playfield while avoiding obstacles.",
-    "format": "gallery",
-    "facts": [
-      {
-        "label": "Context",
-        "value": "My first mobile app"
-      },
-      {
-        "label": "Released",
-        "value": "Google Play / circa 2017"
-      },
-      {
-        "label": "Tools",
-        "value": "Unity / C#"
-      }
-    ],
-    "introduction": "Expand Land was my first mobile app: a simple 2D puzzle game built with Unity and C#. The goal is to fill as much space as possible while avoiding obstacles. I published it on Google Play around 2017.",
-    "sections": [
-      {
-        "title": "A simple spatial puzzle",
-        "body": "Players grow circles within the playfield, balancing coverage against the moving obstacles. The interface tracks the level, circles used, lives and percentage filled."
-      },
-      {
-        "title": "Taking it to mobile",
-        "body": "The project brought together the puzzle mechanics, level flow and mobile interface. The screenshots also show restart and rewarded-ad retry options from the game."
-      }
-    ],
-    "gallery": [
-      {
-        "src": "images/projects/expand-land-play.png",
-        "alt": "Expand Land level 2 with blue circles covering 65 percent of a white playfield, black star-shaped obstacles and three lives remaining.",
-        "width": 2960,
-        "height": 1440,
-        "caption": "Level 2 with 65% of the playfield covered."
-      },
-      {
-        "src": "images/projects/expand-land-retry.webp",
-        "alt": "Expand Land out-of-lives menu offering Restart and Watch Ad to Retry Level.",
-        "width": 447,
-        "height": 251,
-        "caption": "The retry screen."
-      }
-    ],
-    "tags": [
-      "Unity",
-      "C#",
-      "2D puzzles",
-      "Android"
-    ],
-    "links": [
-      {
-        "label": "Game screenshots",
-        "href": "https://imgur.com/a/expand-land-6LUE2BU"
-      }
-    ]
-  },
-  {
-    "slug": "simba-runescape",
-    "title": "RuneScape automation",
-    "group": "Games & simulation",
-    "filterCategory": "Game",
-    "category": "Scripting / Game automation",
-    "summary": "Writing Simba scripts to automate tasks in RuneScape.",
-    "image": "images/projects/simba-runescape.webp",
-    "imageAlt": "Illustrative Old School RuneScape automation image with green boxes around trees and inventory slots.",
-    "imageWidth": 251,
-    "imageHeight": 262,
-    "imageCaption": "Illustrative OSRS automation image, not a capture of my own scripts.",
-    "format": "compact",
-    "facts": [
-      {
-        "label": "Context",
-        "value": "Personal scripting projects"
-      },
-      {
-        "label": "Tool",
-        "value": "Simba"
-      },
-      {
-        "label": "Game",
-        "value": "RuneScape"
-      }
-    ],
-    "introduction": "I wrote Simba scripts for botting in RuneScape. These were small automation projects built around observing the game state and carrying out repeated actions, such as gathering resources and managing inventory.",
-    "sections": [
-      {
-        "title": "Scripting a repeatable task",
-        "body": "The work was an early exercise in turning a game activity into a sequence of decisions and actions. It gave me practical experience with automation and debugging behaviour in an interactive environment. I no longer have a script or demo to share."
-      }
-    ],
-    "tags": [
-      "Simba",
-      "Scripting",
-      "Automation"
-    ],
-    "links": []
-  },
-  {
-    "slug": "nostalgia-desktop",
-    "aliases": [
-      "nostalgia-simulator"
-    ],
-    "title": "Nostalgia Desktop",
-    "group": "Games & simulation",
-    "filterCategory": "Game",
-    "category": "Interactive experience / Digital nostalgia",
-    "summary": "A desktop experience for exploring digital nostalgia.",
-    "image": "images/nostalgia-simulator.png",
-    "imageAlt": "A retro teal computer desktop with grey windows and pixel-style icons.",
-    "imageWidth": 2172,
-    "imageHeight": 724,
-    "format": "placeholder",
-    "introduction": "A familiar desktop from a simpler time. An exploration of the interfaces, small rituals, and visual details that make old software memorable.",
-    "sections": [
-      {
-        "title": "A desktop to rediscover",
-        "body": "Windows, folders, and small desktop objects create a space for exploring digital nostalgia. The experience takes its cues from the visual language of early personal computers."
-      },
-      {
-        "title": "The feeling of using software",
-        "body": "Nostalgia Desktop is about more than the appearance of an old screen. It explores how the familiar shapes and interactions of a desktop can carry a sense of place and memory."
-      }
-    ],
-    "tags": [
-      "Interface design",
-      "Retro computing",
-      "Interactive experience"
-    ],
-    "links": []
-  },
-  {
-    "slug": "emergent-garden",
-    "title": "Emergent Garden",
-    "group": "More projects",
-    "filterCategory": "Game",
-    "category": "Creative coding / Simulation",
-    "summary": "Interactive particle system exploring emergent behaviour.",
-    "image": "images/emergent-garden.png",
-    "imageAlt": "Colourful particles gathering into flowing pink, violet and turquoise clusters.",
-    "imageWidth": 2172,
-    "imageHeight": 724,
-    "format": "placeholder",
-    "introduction": "A small world of moving particles. Simple interactions give rise to patterns that feel unexpectedly alive.",
-    "sections": [
-      {
-        "title": "Small rules, surprising patterns",
-        "body": "Emergent Garden explores how individual particles can form larger structures through their interactions. The interest is in the behaviour of the whole system, and the patterns that emerge without being drawn by hand."
-      },
-      {
-        "title": "An invitation to explore",
-        "body": "An interactive simulation makes room for experimentation. Observing the movement, changing conditions, and watching new arrangements unfold are at the heart of the project."
-      }
-    ],
-    "tags": [
-      "Generative systems",
-      "Interaction",
-      "Emergent behaviour"
-    ],
-    "links": []
-  },
-  {
-    "slug": "further-down-still",
-    "title": "Further Down, Still",
-    "group": "More projects",
-    "filterCategory": "Game",
-    "category": "Game development / 2D action",
-    "summary": "A 2D action game about descent and persistence.",
-    "image": "images/further-down-still.png",
-    "imageAlt": "Illustrative pixel-art cavern with a sword-wielding adventurer and red-lit enemy.",
-    "imageWidth": 2172,
-    "imageHeight": 724,
-    "format": "placeholder",
-    "introduction": "A journey further into the dark. A 2D action game built around descent, challenge, and the decision to keep going.",
-    "sections": [
-      {
-        "title": "Into the depths",
-        "body": "Further Down, Still explores descent through the language of a 2D action game. A dark setting and a sense of forward movement frame the experience."
-      },
-      {
-        "title": "Try, learn, continue",
-        "body": "Persistence is the central idea: meeting an obstacle, trying again, and finding a way onward. The project brings that theme into an interactive form."
-      }
-    ],
-    "tags": [
-      "2D action",
-      "Game design",
-      "Atmosphere"
-    ],
-    "links": []
   }
 ];
 

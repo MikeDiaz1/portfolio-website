@@ -8,7 +8,7 @@ Built with **Svelte 5, SvelteKit 3, and TypeScript**, with fully static output f
 
 ## Explore
 
-The Portfolio panel contains 17 entries grouped into research, websites and previous work, games and simulation, and more projects. Research includes three linked thesis parts, endometrial biopsy tumor annotation, and retinal OCT classification. Every entry has its own address, such as `/projects/pixel-tower-defense/`, so projects can be bookmarked, shared, opened in a new tab, or reached using browser Back and Forward.
+The Portfolio panel contains 17 entries grouped into research, websites and previous work, and games and simulation. Research includes three linked thesis parts, endometrial biopsy tumor annotation, and retinal OCT classification. Every entry has its own address, such as `/projects/pixel-tower-defense/`, so projects can be bookmarked, shared, opened in a new tab, or reached using browser Back and Forward.
 
 - [GitHub](https://github.com/MikeDiaz1)
 - [LinkedIn](https://www.linkedin.com/in/michael-diaz-stewart-7547ab271/)
@@ -69,19 +69,21 @@ Publication DOI links are generated from each entry's `doi` value. To add poster
 
 ### Projects
 
-Add or edit entries in the `projects` array. Every entry becomes a sidebar card and a prerendered page automatically. The array order controls both the sidebar and the “Next project” links.
+Add or edit entries in the `projects` array. Every entry becomes a sidebar card and a prerendered page automatically. The array order controls category lists and the “Next project” links: research, games and simulation, then websites. In All, `pinnedSlugs` in `ProjectSidebar.svelte` places Further Down, Still and Image-based biomarker prediction first, without duplicating them in their groups.
 
 - Use a unique, URL-friendly slug, such as `my-project`. Keep published slugs stable so existing links continue to work.
 - Use `aliases` when renaming a project. `/projects/nostalgia-simulator/` still opens Nostalgia Desktop, whose current address is `/projects/nostalgia-desktop/`.
+- Emergent Sandbox uses `/projects/emergent-sandbox/`; its earlier `/projects/emergent-garden/` and `/projects/emergence-playground/` addresses remain available as aliases.
 - Set `group` for the sidebar heading and `format` to `research`, `gallery`, `website`, `compact`, or `placeholder` for the appropriate layout.
-- Set `filterCategory` to `Machine Learning`, `Game`, or `Web`. The sidebar's All filter is selected initially; selecting a category narrows the list, and selecting All restores every project in its original order.
+- Set `filterCategory` to `Machine Learning`, `Game`, or `Web`. All is selected initially and shows pinned projects first. Category filters use their natural order; Game starts with Further Down, Still, Nostalgic desktop, and Emergent Sandbox.
 - Put images in `static/images/projects/` and set `image` to its path without a leading slash. Supply the actual `imageWidth` and `imageHeight`, descriptive `imageAlt` text, and an optional `imageCaption`.
 - Use `results` and `resultNote` to show research metrics with their evaluation context. Project headers use a single divider below the summary.
 - Use `sections` for the project story and `links` for live demos, papers, or repositories. Resource links should use complete URLs.
-- Add `gallery` images with dimensions, captions, and optional `portrait: true`. Images retain their proportions and open at full size. `related` lists project slugs for the thesis navigation.
+- Use `featuredLink` with a label, description and URL for a prominent resource beneath the project summary, such as the Further Down, Still soundtrack.
+- Add `gallery` images with dimensions, captions, and optional `portrait: true`. Images retain their proportions and open in an enlarged overlay, dismissed with Close, Escape, or a click outside. `related` lists project slugs for the thesis navigation.
 - Rebuild after changing content.
 
-The expanded entries use Michael's project presentation, thesis defence slides, screenshots, and supplied descriptions; see [content and image sources](docs/project-sources.md). Nostalgia Desktop, Emergent Garden, and Further Down, Still retain placeholder copy and illustrative artwork pending further details. [Artwork notes and original prompts](docs/artwork.md) distinguish those images from project screenshots and research figures.
+The entries use Michael's project presentation, thesis defence slides, screenshots, and supplied descriptions; see [content and image sources](docs/project-sources.md). All project placeholders have been replaced with supplied content and images. [Artwork notes and original prompts](docs/artwork.md) document the retired illustrative banners.
 
 ## Deploy to GitHub Pages
 

@@ -1,13 +1,23 @@
 <script lang="ts">
   import { asset, resolve } from '$app/paths';
   import { page } from '$app/state';
-  import { projects, type ProjectFilter } from '#lib/data/projects.ts';
+  import { projects, type Project, type ProjectFilter } from '#lib/data/projects.ts';
   import Icon from './Icon.svelte';
 
   const filters: ProjectFilter[] = ['Machine Learning', 'Game', 'Web'];
+  const groupEmojis: Record<ProjectFilter, string> = { 'Machine Learning': '🔬', Game: '🎮', Web: '🌐' };
+  const pinnedSlugs = ['further-down-still', 'medical-image-ai'];
+  const allProjects = [
+    ...pinnedSlugs.flatMap((slug) => projects.filter((project) => project.slug === slug)),
+    ...projects.filter((project) => !pinnedSlugs.includes(project.slug))
+  ];
   let activeFilter = $state<ProjectFilter | null>(null);
   let projectList: HTMLElement;
-  const visibleProjects = $derived(projects.filter((project) => !activeFilter || project.filterCategory === activeFilter));
+  const visibleProjects = $derived(activeFilter ? projects.filter((project) => project.filterCategory === activeFilter) : allProjects);
+
+  function displayGroup(project: Project) {
+    return !activeFilter && pinnedSlugs.includes(project.slug) ? 'Pinned 📌' : `${project.group} ${groupEmojis[project.filterCategory]}`;
+  }
 
   function selectFilter(filter: ProjectFilter | null) {
     activeFilter = filter;
@@ -26,8 +36,8 @@
   <p class="sr-only" aria-live="polite">{visibleProjects.length} projects shown{activeFilter ? ': ' + activeFilter : ': all projects'}.</p>
   <nav id="project-list" class="project-list" aria-label="Portfolio" bind:this={projectList}>
     {#each visibleProjects as project, index (project.slug)}
-      {#if index === 0 || visibleProjects[index - 1].group !== project.group}
-        <p class="project-group">{project.group}</p>
+      {#if index === 0 || displayGroup(visibleProjects[index - 1]) !== displayGroup(project)}
+        <p class="project-group">{displayGroup(project)}</p>
       {/if}
       {@const selected = page.params.slug === project.slug || project.aliases?.includes(page.params.slug ?? '')}
       <a class="project-card" data-format={project.format} class:selected href={resolve('/projects/[slug]', { slug: project.slug })} aria-current={selected ? 'page' : undefined}>

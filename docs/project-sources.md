@@ -39,7 +39,7 @@ The primary source for the project descriptions and most screenshots is Michael'
 | Expand Land | `expand-land.png` and `expand-land-play.png`, replacement gameplay screenshots supplied by Michael; `expand-land-retry.webp` from the presentation | [Game album](https://imgur.com/a/expand-land-6LUE2BU) |
 | Stafits | `stafits.png` supplied by Michael from the archived website; `stafits-mobile.webp` and `stafits-travel.webp` from the presentation | [Website album](https://imgur.com/a/stafits-landing-page-iw99UJw), [travel app album](https://imgur.com/a/stafits-travel-app-uVylnpl), [2018 website archive](https://web.archive.org/web/20181215100555/https://www.stafits.com/) |
 | Upropos | `upropos.webp` from Michael's attached landing-page screenshot | [Project album](https://imgur.com/a/XUpQi46), [prototype video](https://www.youtube.com/watch?v=hCCjlpMD9Lw) |
-| RuneScape automation | `simba-runescape.webp` from Michael's attached OSRS image | The presentation identifies the automation image as illustrative, not an example of Michael's own scripts. |
+| RuneScape automation | `simba-runescape.png`, higher-resolution OSRS image supplied by Michael | The presentation identifies the automation image as illustrative, not an example of Michael's own scripts. |
 | Retinal OCT classification | `retinal-oct.webp`, `oct-gradcam.webp` from the presentation | [Kermany et al. dataset](https://data.mendeley.com/datasets/rscbjbr9sj/3), credited in the source presentation |
 
 Game release dates are approximate (Google Play, circa 2017), as supplied by Michael. OCT accuracies are reported as results from the original project evaluation, without asserting clinical validation. The archive and video are retained as reader resources; their contents were not used to add unsupported claims.
@@ -54,6 +54,16 @@ Game release dates are approximate (Google Play, circa 2017), as supplied by Mic
 
 Website descriptions use the public pages for context and Michael's account for his responsibilities. The competition entry describes coordination and communication, without attributing competitors' models to Michael.
 
-## Placeholders
+## Nostalgia Desktop
 
-Nostalgia Desktop, Emergent Garden, and Further Down, Still retain placeholder descriptions and illustrative banners, explicitly identified on their pages. See [artwork notes](artwork.md) for provenance and the original generation prompts.
+Michael supplied the feature description and confirmed the Phaser, TypeScript and Vite stack. The project is an XP-era desktop experience with apps, games, music, sound effects and local persistence. Its screenshots are `nostalgia-desktop.png` (main desktop), `nostalgia-drive-care.png` (Drive Care in rainy weather) and `nostalgia-apps.png` (HomeAmp, Calculator and Parcel Check at night). They replace the earlier illustrative placeholder; the page retains the Nostalgia Desktop title and its older `nostalgia-simulator` URL alias.
+
+## Further Down, Still
+
+Michael supplied the description, confirmed Phaser 4 and TypeScript, and provided five screenshots: `further-down-still-title.png`, `further-down-still-progression.png`, `further-down-still-combat.png`, `further-down-still-upgrades.png` and `further-down-still-records.png`. The game features automatic movement and combat, three classes, sixteen authored depths, weapon upgrades, permanent Ash progression, Prayers, Turbo modes and run records. These screenshots replace the earlier illustrative placeholder.
+
+Michael supplied the [public soundtrack playlist on Suno](https://suno.com/playlist/fdcfd632-e15a-418e-b713-d1585b5f406c) and requested prominent placement. It is featured beneath the project summary; playlist contents were not independently inspected.
+
+## Emergent Sandbox
+
+Michael supplied the feature description and confirmed the TypeScript and Canvas 2D implementation. The three supplied screenshots are `emergence-playground.png` (Color islands and interaction rules), `emergence-playground-rules.png` (asymmetric rules and live controls), and `emergence-playground-forces.png` (individual-particle force inspection). He subsequently renamed the project Emergent Sandbox. It replaces the Emergent Garden placeholder and retains `emergent-garden` and `emergence-playground` as URL aliases. It includes configurable interactions, live physics controls, scene editing, measurements, background searches and seeded JSON-saveable experiments.

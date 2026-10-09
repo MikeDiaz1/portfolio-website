@@ -24,6 +24,12 @@
       <p class="eyebrow">{data.project.category}</p>
       <h1 id="project-title">{data.project.title}</h1>
       <p class="project-lead">{data.project.summary}</p>
+      {#if data.project.featuredLink}
+        <a class="project-featured-link" href={data.project.featuredLink.href} target="_blank" rel="noopener noreferrer">
+          <span><strong>{data.project.featuredLink.label}</strong><span>{data.project.featuredLink.description}</span></span>
+          <Icon name="arrow" size={24} />
+        </a>
+      {/if}
     </header>
 
     <hr class="project-divider" />
@@ -66,7 +72,7 @@
 
     {#if data.project.gallery?.length}
       <section class="project-gallery-section" aria-labelledby="gallery-heading">
-        <h2 id="gallery-heading" class="section-label">{data.project.format === 'research' ? 'Analysis figures' : 'Screenshots'}</h2>
+        <h2 id="gallery-heading" class="section-label">{data.project.format === 'research' ? 'Additional figures' : 'Screenshots'}</h2>
         <div class="project-gallery" class:single={data.project.gallery.length === 1}>
           {#each data.project.gallery as image}<ProjectFigure {image} />{/each}
         </div>
