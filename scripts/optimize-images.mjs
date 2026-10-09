@@ -1,5 +1,5 @@
 import { createHash } from 'node:crypto';
-import { mkdir, readFile, stat, writeFile } from 'node:fs/promises';
+import { mkdir, readFile, readdir, stat, unlink, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import sharp from 'sharp';
@@ -27,6 +27,7 @@ for (const entry of [...experience, ...education]) include(entry.logo, [40, 80])
 await mkdir(outputDirectory, { recursive: true });
 await mkdir(path.dirname(manifestPath), { recursive: true });
 const manifest = {};
+const currentFiles = new Set();
 let generated = 0;
 
 for (const [src, requestedWidths] of images) {
@@ -45,6 +46,7 @@ for (const [src, requestedWidths] of images) {
       continue;
     }
     const filename = `${name}-${hash}-${size}.webp`;
+    currentFiles.add(filename);
     const destination = path.join(outputDirectory, filename);
     try {
       await stat(destination);
@@ -64,4 +66,13 @@ let previous;
 try { previous = await readFile(manifestPath, 'utf8'); }
 catch (error) { if (error.code !== 'ENOENT') throw error; }
 if (previous !== json) await writeFile(manifestPath, json);
-console.log(`Prepared ${images.size} images; generated ${generated} WebP sizes. Originals are preserved.`);
+
+// Remove only obsolete files produced by this script, never source images.
+let removed = 0;
+for (const entry of await readdir(outputDirectory, { withFileTypes: true })) {
+  if (entry.isFile() && /-[a-f0-9]{12}-\d+\.webp$/.test(entry.name) && !currentFiles.has(entry.name)) {
+    await unlink(path.join(outputDirectory, entry.name));
+    removed++;
+  }
+}
+console.log(`Prepared ${images.size} images; generated ${generated} WebP sizes; removed ${removed} obsolete previews.`);

@@ -24,8 +24,7 @@ export interface Project {
   imageWidth: number;
   imageHeight: number;
   imageCaption?: string;
-  format: 'research' | 'gallery' | 'website' | 'compact' | 'placeholder';
-  facts?: { label: string; value: string }[];
+  format: 'research' | 'gallery' | 'website' | 'compact';
   introduction: string;
   results?: { value: string; label: string }[];
   resultNote?: string;
@@ -53,20 +52,6 @@ export const projects: Project[] = [
     "imageHeight": 1565,
     "imageCaption": "Whole-slide images become patch embeddings, which are pooled to make slide-level predictions.",
     "format": "research",
-    "facts": [
-      {
-        "label": "Context",
-        "value": "Thesis / Part 2 of 3"
-      },
-      {
-        "label": "Approach",
-        "value": "Multiple-instance learning"
-      },
-      {
-        "label": "Evaluation",
-        "value": "Three cohorts"
-      }
-    ],
     "introduction": "I built and evaluated pathology-image models for CMS, microsatellite instability (MSI), and RAS/BRAF mutations. The central question was whether each prediction could be useful at an operating point chosen for its intended clinical task.",
     "results": [
       {
@@ -98,7 +83,7 @@ export const projects: Project[] = [
         "caption": "MSI results at the selected screening operating point, including the trade-off between sensitivity and specificity."
       },
       {
-        "src": "images/projects/msi-screening-flow.png",
+        "src": "images/projects/msi-screening-flow.webp",
         "alt": "Illustrative MSI screening flow for 1,000 patients: 561 predicted high risk include 129 true positives and 432 false positives; 439 predicted low risk include 8 false negatives and 431 true negatives.",
         "width": 787,
         "height": 721,
@@ -129,20 +114,6 @@ export const projects: Project[] = [
     "imageHeight": 555,
     "imageCaption": "A discrete-time survival model converts image features into conditional hazards and a patient risk score.",
     "format": "research",
-    "facts": [
-      {
-        "label": "Context",
-        "value": "Thesis / Part 3 of 3"
-      },
-      {
-        "label": "Focus",
-        "value": "Cohort shift"
-      },
-      {
-        "label": "Evaluation",
-        "value": "Pooled and stratified"
-      }
-    ],
     "introduction": "",
     "sections": [
       {
@@ -156,14 +127,14 @@ export const projects: Project[] = [
     ],
     "gallery": [
       {
-        "src": "images/projects/survival-risk-groups.png",
+        "src": "images/projects/survival-risk-groups.webp",
         "alt": "Four Kaplan–Meier plots comparing low-risk and high-risk groups, with shaded confidence intervals, hazard ratios and log-rank p-values. The lower two panels show greater separation between groups.",
         "width": 878,
         "height": 778,
         "caption": "Kaplan–Meier curves comparing predicted low-risk and high-risk groups across four encoders, with hazard ratios and log-rank p-values."
       },
       {
-        "src": "images/projects/survival-cohort-boxplots.png",
+        "src": "images/projects/survival-cohort-boxplots.webp",
         "alt": "Boxplots of predicted risk scores for TCGA, MDA and POG, showing the lowest median in MDA and the highest in POG, with annotated pairwise comparisons.",
         "width": 864,
         "height": 614,
@@ -188,26 +159,12 @@ export const projects: Project[] = [
     "filterCategory": "Machine Learning",
     "category": "Computational pathology",
     "summary": "Investigating the reliability of CMS labels.",
-    "image": "images/projects/cms_classifiers.png",
+    "image": "images/projects/cms_classifiers.webp",
     "imageAlt": "The same expression data produces CMS2, CMS4 or an unclassified result with three different classifiers.",
     "imageWidth": 852,
     "imageHeight": 448,
     "imageCaption": "Different classifiers can assign different consensus molecular subtypes to the same sample.",
     "format": "research",
-    "facts": [
-      {
-        "label": "Context",
-        "value": "Thesis / Part 1 of 3"
-      },
-      {
-        "label": "Focus",
-        "value": "Reference-label stability"
-      },
-      {
-        "label": "Cohort",
-        "value": "Personalized OncoGenomics"
-      }
-    ],
     "introduction": "Before training an image model to predict a molecular subtype, I wanted to understand how reliable the target labels were. This part of my thesis compared consensus molecular subtype (CMS) classifiers in colorectal cancer and examined whether their labels matched the expected biology.",
     "sections": [
       {
@@ -217,7 +174,7 @@ export const projects: Project[] = [
     ],
     "gallery": [
       {
-        "src": "images/projects/varied_methods.png",
+        "src": "images/projects/varied_methods.webp",
         "alt": "Three confusion matrices comparing CMS assignments under different treatments of indeterminate cases.",
         "width": 1653,
         "height": 409,
@@ -242,7 +199,7 @@ export const projects: Project[] = [
     "filterCategory": "Machine Learning",
     "category": "Computational pathology",
     "summary": "Improving tumor annotation on endometrial biopsy slides through supervised fine-tuning and threshold selection.",
-    "image": "images/projects/endometrial-biopsy-annotations.png",
+    "image": "images/projects/endometrial-biopsy-annotations.webp",
     "imageAlt": "Four panels compare model-predicted tumor outlines in blue with a pathologist's tumor annotations in green and other cell-type annotations in red on the same biopsy slide, at threshold settings 4, 5, 6 and 7.",
     "imageWidth": 1262,
     "imageHeight": 869,
@@ -283,20 +240,6 @@ export const projects: Project[] = [
     "imageHeight": 496,
     "imageCaption": "Grad-CAM from the project, showing areas of high attention for a convolutional model.",
     "format": "research",
-    "facts": [
-      {
-        "label": "Context",
-        "value": "Independent project"
-      },
-      {
-        "label": "Task",
-        "value": "Four-class classification"
-      },
-      {
-        "label": "Tools",
-        "value": "TensorFlow / Keras"
-      }
-    ],
     "introduction": "I built a classifier for retinal optical coherence tomography (OCT) images using the public Kermany dataset. The project grew from a custom convolutional network into experiments with EfficientNet-inspired scaling and squeeze-and-excitation blocks, and a residual architecture inspired by ResNet.",
     "results": [
       {
@@ -361,20 +304,6 @@ export const projects: Project[] = [
     "imageHeight": 279,
     "imageCaption": "UBC Ovarian Cancer Subtype Classification and Outlier Detection on Kaggle.",
     "format": "compact",
-    "facts": [
-      {
-        "label": "Role",
-        "value": "Organization and communication"
-      },
-      {
-        "label": "When",
-        "value": "2023–2024"
-      },
-      {
-        "label": "Platform",
-        "value": "Kaggle"
-      }
-    ],
     "introduction": "I helped with the UBC-OCEAN competition, organizing information and relaying it to competitors. The challenge brought together participants working on ovarian cancer subtype classification and outlier detection from pathology images.",
     "sections": [
       {
@@ -404,7 +333,7 @@ export const projects: Project[] = [
     "filterCategory": "Game",
     "category": "Game development / Incremental dungeon diver",
     "summary": "Descend through gothic arenas, and return stronger.",
-    "image": "images/projects/further-down-still-title.png",
+    "image": "images/projects/further-down-still-title.webp",
     "imageAlt": "Further Down, Still title screen with a cloaked figure at a campfire overlooking a vast monochrome gothic city, beside the Descend button.",
     "imageWidth": 1919,
     "imageHeight": 1079,
@@ -431,28 +360,28 @@ export const projects: Project[] = [
     ],
     "gallery": [
       {
-        "src": "images/projects/further-down-still-progression.png",
+        "src": "images/projects/further-down-still-progression.webp",
         "alt": "A descending progression tree beside permanent upgrades for Fury, Fortitude and Madness, with Prayers and Turbo unlocks.",
         "width": 1122,
         "height": 652,
         "caption": "Spend Ash on permanent upgrades and unlock new options through the progression tree."
       },
       {
-        "src": "images/projects/further-down-still-combat.png",
+        "src": "images/projects/further-down-still-combat.webp",
         "alt": "Automatic combat in a stone arena surrounded by flooded gothic ruins and towering statues, with projectiles radiating around the player.",
         "width": 1919,
         "height": 1079,
         "caption": "A build in action within one of the game's fixed-camera arenas."
       },
       {
-        "src": "images/projects/further-down-still-upgrades.png",
+        "src": "images/projects/further-down-still-upgrades.webp",
         "alt": "A Censer Host upgrade choice between Stronger Bolts and Greater Reach over a dark arena.",
         "width": 1919,
         "height": 1079,
         "caption": "Branching weapon upgrades shape the build during a descent."
       },
       {
-        "src": "images/projects/further-down-still-records.png",
+        "src": "images/projects/further-down-still-records.webp",
         "alt": "The Back to the Embers run summary showing depths cleared, Ash earned, descent time and damage contributions from two weapons.",
         "width": 1919,
         "height": 1079,
@@ -481,7 +410,7 @@ export const projects: Project[] = [
     "filterCategory": "Game",
     "category": "Interactive experience / Digital nostalgia",
     "summary": "An XP-era desktop playground with games, apps, music and nostalgic sound effects.",
-    "image": "images/projects/nostalgia-desktop.png",
+    "image": "images/projects/nostalgia-desktop.webp",
     "imageAlt": "Nostalgia Desktop showing an XP-inspired blue taskbar, rolling green hills, app icons, a desktop dog and a fictional system update notice.",
     "imageWidth": 1680,
     "imageHeight": 945,
@@ -504,14 +433,14 @@ export const projects: Project[] = [
     ],
     "gallery": [
       {
-        "src": "images/projects/nostalgia-drive-care.png",
+        "src": "images/projects/nostalgia-drive-care.webp",
         "alt": "The Drive Care app displaying a colorful disk organization grid in an XP-style window, with rain falling across the desktop behind it.",
         "width": 1681,
         "height": 946,
         "caption": "Drive Care's disk organization activity, with rainy weather on the desktop."
       },
       {
-        "src": "images/projects/nostalgia-apps.png",
+        "src": "images/projects/nostalgia-apps.webp",
         "alt": "The HomeAmp music player, Calculator and Minesweeper-inspired Parcel Check game open together on the desktop at night.",
         "width": 1680,
         "height": 947,
@@ -533,7 +462,7 @@ export const projects: Project[] = [
     "filterCategory": "Game",
     "category": "Creative coding / Simulation",
     "summary": "A particle sandbox where simple attraction and repulsion rules create clusters, chasing loops and moving swarms.",
-    "image": "images/projects/emergence-playground.png",
+    "image": "images/projects/emergence-playground.webp",
     "imageAlt": "Emergent Sandbox showing clusters of amber, mint, lilac and pink particles alongside starting presets and a directed interaction matrix.",
     "imageWidth": 1627,
     "imageHeight": 949,
@@ -556,14 +485,14 @@ export const projects: Project[] = [
     ],
     "gallery": [
       {
-        "src": "images/projects/emergence-playground-rules.png",
+        "src": "images/projects/emergence-playground-rules.webp",
         "alt": "Four particle colors forming a compact arrangement beside an asymmetric interaction matrix and live controls for range, force strength and damping.",
         "width": 1635,
         "height": 943,
         "caption": "Asymmetric rules and live physics controls produce different collective patterns."
       },
       {
-        "src": "images/projects/emergence-playground-forces.png",
+        "src": "images/projects/emergence-playground-forces.webp",
         "alt": "A selected particle with a circular neighborhood and force arrows to nearby particles, beside force falloff, gravity and attraction controls.",
         "width": 1668,
         "height": 941,
@@ -584,26 +513,12 @@ export const projects: Project[] = [
     "filterCategory": "Game",
     "category": "Healthcare simulation",
     "summary": "An emergency-room patient simulation for practising symptom recognition.",
-    "image": "images/projects/presentations.png",
+    "image": "images/projects/presentations.webp",
     "imageAlt": "Presentations simulation showing an emergency-unit patient form, diagnostic choices and feedback on an incorrect diagnosis in an illustrated consultation room.",
     "imageWidth": 1920,
     "imageHeight": 1080,
     "imageCaption": "The simulation combines patient information, diagnostic choices and explanatory feedback.",
     "format": "gallery",
-    "facts": [
-      {
-        "label": "Context",
-        "value": "Independent project"
-      },
-      {
-        "label": "Started",
-        "value": "Late 2022"
-      },
-      {
-        "label": "Tools",
-        "value": "Unity / C#"
-      }
-    ],
     "introduction": "Presentations is a Unity simulation of patient presentations in an emergency-room setting. I built it to model diseases with software, and to practise recognizing disease patterns from a patient’s demographics, symptoms and vital signs.",
     "sections": [
       {
@@ -635,26 +550,12 @@ export const projects: Project[] = [
     "filterCategory": "Game",
     "category": "3D mobile game",
     "summary": "A simple tower defense game published on Google Play around 2017.",
-    "image": "images/projects/pixel-td-title.png",
+    "image": "images/projects/pixel-td-title.webp",
     "imageAlt": "Pixel Tower Defense title screen with a neon turquoise particle background, a Play button and a credit to Michael Diaz-Stewart.",
     "imageWidth": 1920,
     "imageHeight": 1080,
     "imageCaption": "Pixel Tower Defense title screen.",
     "format": "gallery",
-    "facts": [
-      {
-        "label": "Role",
-        "value": "Independent developer"
-      },
-      {
-        "label": "Released",
-        "value": "Google Play / circa 2017"
-      },
-      {
-        "label": "Tools",
-        "value": "Unity / C#"
-      }
-    ],
     "introduction": "I built Pixel Tower Defense in Unity and C#, taking a 3D tower defense game with simple graphics through to a Google Play release around 2017. Players defend against endless waves of enemies by placing and upgrading towers.",
     "sections": [
       {
@@ -702,26 +603,12 @@ export const projects: Project[] = [
     "filterCategory": "Game",
     "category": "2D mobile puzzle game",
     "summary": "Fill the playfield while avoiding obstacles. Published on Google Play around 2017.",
-    "image": "images/projects/expand-land.png",
+    "image": "images/projects/expand-land.webp",
     "imageAlt": "Expand Land puzzle gameplay with turquoise circles filling a yellow-green playfield and moving star-shaped obstacles.",
     "imageWidth": 2960,
     "imageHeight": 1440,
     "imageCaption": "Growing circles to cover the playfield while avoiding obstacles.",
     "format": "gallery",
-    "facts": [
-      {
-        "label": "Context",
-        "value": "My first mobile app"
-      },
-      {
-        "label": "Released",
-        "value": "Google Play / circa 2017"
-      },
-      {
-        "label": "Tools",
-        "value": "Unity / C#"
-      }
-    ],
     "introduction": "Expand Land was my first mobile app: a simple 2D puzzle game built with Unity and C#. The goal is to fill as much space as possible while avoiding obstacles. I published it on Google Play around 2017.",
     "sections": [
       {
@@ -735,7 +622,7 @@ export const projects: Project[] = [
     ],
     "gallery": [
       {
-        "src": "images/projects/expand-land-play.png",
+        "src": "images/projects/expand-land-play.webp",
         "alt": "Expand Land level 2 with blue circles covering 65 percent of a white playfield, black star-shaped obstacles and three lives remaining.",
         "width": 2960,
         "height": 1440,
@@ -769,26 +656,12 @@ export const projects: Project[] = [
     "filterCategory": "Game",
     "category": "Scripting / Game automation",
     "summary": "Writing Simba scripts to automate tasks in RuneScape.",
-    "image": "images/projects/simba-runescape.png",
+    "image": "images/projects/simba-runescape.webp",
     "imageAlt": "Illustrative Old School RuneScape automation image with green boxes around trees and inventory slots.",
     "imageWidth": 511,
     "imageHeight": 528,
     "imageCaption": "Illustrative OSRS automation image, not a capture of my own scripts.",
     "format": "compact",
-    "facts": [
-      {
-        "label": "Context",
-        "value": "Personal scripting projects"
-      },
-      {
-        "label": "Tool",
-        "value": "Simba"
-      },
-      {
-        "label": "Game",
-        "value": "RuneScape"
-      }
-    ],
     "introduction": "I wrote Simba scripts for botting in RuneScape. These were small automation projects built around observing the game state and carrying out repeated actions, such as gathering resources and managing inventory.",
     "sections": [
       {
@@ -810,26 +683,12 @@ export const projects: Project[] = [
     "filterCategory": "Web",
     "category": "Web development / Research",
     "summary": "Built and maintain the AI in Medicine Lab website at UBC.",
-    "image": "images/projects/aim-lab.png",
+    "image": "images/projects/aim-lab.webp",
     "imageAlt": "The AI in Medicine Lab website home page.",
     "imageWidth": 1919,
     "imageHeight": 1079,
     "imageCaption": "The AIM Lab website brings together the lab’s research and public information.",
     "format": "website",
-    "facts": [
-      {
-        "label": "Role",
-        "value": "Website development and maintenance"
-      },
-      {
-        "label": "Organization",
-        "value": "AI in Medicine Lab, UBC"
-      },
-      {
-        "label": "Status",
-        "value": "Ongoing"
-      }
-    ],
     "introduction": "I built and maintain the website for UBC’s AI in Medicine Lab. It gives the lab a place to share its research, publications, news and opportunities with researchers and other visitors.",
     "sections": [
       {
@@ -855,26 +714,12 @@ export const projects: Project[] = [
     "filterCategory": "Web",
     "category": "Software development / Startup",
     "summary": "Website, user portal, browser extensions and a mobile travel app.",
-    "image": "images/projects/stafits.png",
+    "image": "images/projects/stafits.webp",
     "imageAlt": "The Stafits website showing employee-wellness articles and a contact banner with a woman surrounded by pink smoke.",
     "imageWidth": 1920,
     "imageHeight": 964,
     "imageCaption": "Archived Stafits website showing its articles and contact section.",
     "format": "gallery",
-    "facts": [
-      {
-        "label": "Role",
-        "value": "Software Developer"
-      },
-      {
-        "label": "When",
-        "value": "Nov 2017 – Oct 2018"
-      },
-      {
-        "label": "Team",
-        "value": "One of two developers"
-      }
-    ],
     "introduction": "I worked as one of two software developers at Stafits, a Toronto startup. My work spanned the website and user portal, browser extensions, and a mobile app that integrated the Google Places API.",
     "sections": [
       {
@@ -932,26 +777,12 @@ export const projects: Project[] = [
     "filterCategory": "Web",
     "category": "Web administration / Volunteer work",
     "summary": "Website administration for a UBC health-coaching program.",
-    "image": "images/projects/plm-coach.png",
+    "image": "images/projects/plm-coach.webp",
     "imageAlt": "The PLM Coach website home page with information about the health coaching program.",
     "imageWidth": 1919,
     "imageHeight": 1079,
     "imageCaption": "PLM Coach connects participants with UBC medical student health coaches.",
     "format": "website",
-    "facts": [
-      {
-        "label": "Role",
-        "value": "Volunteer VP Technology Admin"
-      },
-      {
-        "label": "Commitment",
-        "value": "About three years"
-      },
-      {
-        "label": "Status",
-        "value": "Website management"
-      }
-    ],
     "introduction": "I served as volunteer VP Technology Admin for PLM Coach for about three years, with responsibility for its website. PLM stands for Prevention and Lifestyle Medicine, and the program offers free health coaching with UBC medical students.",
     "sections": [
       {
@@ -983,20 +814,6 @@ export const projects: Project[] = [
     "imageHeight": 1012,
     "imageCaption": "The Upropos landing-page prototype.",
     "format": "gallery",
-    "facts": [
-      {
-        "label": "Role",
-        "value": "Technical co-founder"
-      },
-      {
-        "label": "Platform",
-        "value": "Ethereum"
-      },
-      {
-        "label": "Stage",
-        "value": "Proof of concept"
-      }
-    ],
     "introduction": "Upropos was a cryptocurrency crowdfunding project built on Ethereum. As technical co-founder, I partnered with a business-focused co-founder to develop the concept and demonstrate a working proof of concept to potential investors.",
     "sections": [
       {

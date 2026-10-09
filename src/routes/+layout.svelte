@@ -3,11 +3,15 @@
   import { beforeNavigate, afterNavigate } from '$app/navigation';
   import ProfileHeader from '#lib/components/ProfileHeader.svelte';
   import ProjectSidebar from '#lib/components/ProjectSidebar.svelte';
+  import { experience, education } from '#lib/data/profile.ts';
+  import { optimizedImage } from '#lib/images.ts';
   import '../app.css';
 
   let { children }: { children: Snippet } = $props();
   let main: HTMLElement;
   const scrollPositions = new Map<string, number>();
+  const overviewLogos = [...new Set([...experience, ...education].map((entry) => entry.logo).filter(Boolean))]
+    .map((src) => optimizedImage(src, 40));
 
   beforeNavigate(({ from }) => {
     if (from && main) scrollPositions.set(from.url.pathname, main.scrollTop);
@@ -19,6 +23,12 @@
     if (type !== 'enter') main.focus({ preventScroll: true });
   });
 </script>
+
+<svelte:head>
+  {#each overviewLogos as logo}
+    <link rel="preload" as="image" href={logo.src} imagesrcset={logo.srcset} imagesizes="40px" />
+  {/each}
+</svelte:head>
 
 <a class="skip-link" href="#main-content">Skip to main content</a>
 <div class="portfolio-shell">

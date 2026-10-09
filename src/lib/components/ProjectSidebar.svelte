@@ -6,7 +6,7 @@
   import { imageSizes, optimizedImage } from '#lib/images.ts';
 
   const filters: ProjectFilter[] = ['Machine Learning', 'Game', 'Web'];
-  const groupEmojis: Record<ProjectFilter, string> = { 'Machine Learning': '🔬', Game: '🎮', Web: '🌐' };
+  const groupEmojis: Record<ProjectFilter, string> = { 'Machine Learning': '', Game: '', Web: '' };
   const pinnedSlugs = ['further-down-still', 'medical-image-ai'];
   const allProjects = [
     ...pinnedSlugs.flatMap((slug) => projects.filter((project) => project.slug === slug)),
@@ -55,7 +55,6 @@
           <ul class="project-card-tags" aria-label="Topics">
             {#each project.tags.slice(0, 3) as tag}<li>{tag}</li>{/each}
           </ul>
-          {#if project.format === 'placeholder'}<span class="project-placeholder-label">Details to come</span>{/if}
         </div>
       </a>
     {/each}

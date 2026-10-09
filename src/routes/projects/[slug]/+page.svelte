@@ -35,10 +35,6 @@
 
     <hr class="project-divider" />
 
-    {#if data.project.format === 'placeholder'}
-      <p class="placeholder-notice">More details to come. This is a placeholder overview with illustrative artwork.</p>
-    {/if}
-
     <div class="project-opening" class:compact={data.project.format === 'compact'}>
       <p class="project-introduction">{data.project.introduction}</p>
 

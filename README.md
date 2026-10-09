@@ -61,7 +61,7 @@ For a portrait, add your image to `static/images/` and set `profile.avatar` to, 
 
 ### Experience, education, publications, and posters
 
-Edit the `experience`, `education`, `publications`, and `posterPresentations` arrays in `src/lib/data/profile.ts`. Work entries include dates, location, work arrangement, employment type, and a `bullets` array for responsibilities or achievements. Set `organisationUrl` to a full URL to make the company name clickable; leave it empty for plain text.
+Edit the `experience`, `education`, `publications`, and `posterPresentations` arrays in `src/lib/data/profile.ts`. The first two work entries are always visible; later entries sit in a collapsed Additional Experience section that visitors can expand, including without JavaScript. Work entries include dates, location, work arrangement, employment type, and a `bullets` array for responsibilities or achievements. Set `organisationUrl` to a full URL to make the company name clickable; leave it empty for plain text.
 
 Both work and education entries have `logo`, `initials`, and `bullets` fields. Add a company or university logo to `static/images/` and set its path, for example `images/ubc.svg`. Empty logo fields display the initials. Each string in `bullets` becomes a separate bullet; use `\n` within a string for an explicit line break. Empty arrays render without a list.
 
@@ -74,7 +74,7 @@ Add or edit entries in the `projects` array. Every entry becomes a sidebar card 
 - Use a unique, URL-friendly slug, such as `my-project`. Keep published slugs stable so existing links continue to work.
 - Use `aliases` when renaming a project. `/projects/nostalgia-simulator/` still opens Nostalgia Desktop, whose current address is `/projects/nostalgia-desktop/`.
 - Emergent Sandbox uses `/projects/emergent-sandbox/`; its earlier `/projects/emergent-garden/` and `/projects/emergence-playground/` addresses remain available as aliases.
-- Set `group` for the sidebar heading and `format` to `research`, `gallery`, `website`, `compact`, or `placeholder` for the appropriate layout.
+- Set `group` for the sidebar heading and `format` to `research`, `gallery`, `website`, or `compact` for the appropriate layout.
 - Set `filterCategory` to `Machine Learning`, `Game`, or `Web`. All is selected initially and shows pinned projects first. Category filters use their natural order; Game starts with Further Down, Still, Nostalgic desktop, and Emergent Sandbox.
 - Put images in `static/images/projects/` and set `image` to its path without a leading slash. Supply the actual `imageWidth` and `imageHeight`, descriptive `imageAlt` text, and an optional `imageCaption`.
 - Use `results` and `resultNote` to show research metrics with their evaluation context. Project headers use a single divider below the summary.
@@ -87,11 +87,11 @@ The entries use Michael's project presentation, thesis defence slides, screensho
 
 ### Image loading
 
-Keep the original screenshots in `static/` and reference them in the content files. `npm run dev`, `npm run check`, and `npm run build` automatically generate WebP previews with Sharp. Project previews are capped at 480, 960, and 1600 pixels wide; portraits and logos use smaller sizes. The browser selects an appropriate size for the layout and screen density. Sidebar and gallery images load lazily, while the main project image gets priority.
+Keep full-resolution images in `static/` and reference them in the content files. The supplied project PNGs have been converted to WebP at their original dimensions: lossless for research figures, and lossless or quality 94 for other screenshots, whichever produces the smaller file. `npm run dev`, `npm run check`, and `npm run build` automatically generate smaller WebP previews with Sharp. Project previews are capped at 480, 960, and 1600 pixels wide; portraits and logos use smaller sizes. The browser selects an appropriate size for the layout and screen density. Sidebar and gallery images load lazily, while the main project image gets priority. The small company and university logos load immediately and are preloaded across pages so they are ready when returning to the overview.
 
-The full-resolution original is loaded only when its image overlay is opened. Image links also support opening the original in a new tab with Ctrl/Cmd-click, and work without JavaScript. Original screenshots are preserved.
+The full-resolution WebP is loaded only when its image overlay is opened. Image links also support opening it in a new tab with Ctrl/Cmd-click, and work without JavaScript. The replaced PNGs are available in Git history.
 
-Generated files live in `static/images/optimized/` and `src/lib/generated/` and are ignored by Git. Their filenames include a content hash to avoid stale previews after replacing a screenshot. If you change image files or references while the dev server is already running, run `npm run images` or restart the server. Builds always regenerate the manifest automatically; unchanged previews are reused.
+Generated files live in `static/images/optimized/` and `src/lib/generated/` and are ignored by Git. Their filenames include a content hash to avoid stale previews after replacing a screenshot. If you change image files or references while the dev server is already running, run `npm run images` or restart the server. Builds always regenerate the manifest automatically; unchanged previews are reused and obsolete generated previews are removed.
 
 ## Deploy to GitHub Pages
 
