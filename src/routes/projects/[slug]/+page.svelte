@@ -3,6 +3,7 @@
   import { profile } from '#lib/data/profile.ts';
   import Icon from '#lib/components/Icon.svelte';
   import ProjectFigure from '#lib/components/ProjectFigure.svelte';
+  import { imageSizes } from '#lib/images.ts';
   import type { PageData } from './$types';
 
   let { data }: { data: PageData } = $props();
@@ -17,7 +18,7 @@
   <article class="project-detail" data-format={data.project.format} aria-labelledby="project-title">
     <div class="project-toolbar section-label">
       <span>Portfolio</span>
-      <a class="back-link" href={resolve('/')}><Icon name="back" size={15} />Back to overview</a>
+      <a class="back-link" href={resolve('/')} data-sveltekit-preload-code="eager"><Icon name="back" size={15} />Back to overview</a>
     </div>
 
     <header class="project-heading">
@@ -64,7 +65,7 @@
     <div class="project-sections">
       {#each data.project.sections as section}
         <section>
-          <h2>{section.title}</h2>
+          {#if section.title}<h2>{section.title}</h2>{/if}
           <p>{section.body}</p>
         </section>
       {/each}
@@ -74,7 +75,7 @@
       <section class="project-gallery-section" aria-labelledby="gallery-heading">
         <h2 id="gallery-heading" class="section-label">{data.project.format === 'research' ? 'Additional figures' : 'Screenshots'}</h2>
         <div class="project-gallery" class:single={data.project.gallery.length === 1}>
-          {#each data.project.gallery as image}<ProjectFigure {image} />{/each}
+          {#each data.project.gallery as image}<ProjectFigure {image} sizes={data.project.gallery.length === 1 ? imageSizes.figure : imageSizes.gallery} />{/each}
         </div>
       </section>
     {/if}

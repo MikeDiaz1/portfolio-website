@@ -2,6 +2,7 @@
   import { asset } from '$app/paths';
   import type { AssetPath } from '$app/types';
   import { experience, education, publications, posterPresentations, profile } from '#lib/data/profile.ts';
+  import { optimizedImage } from '#lib/images.ts';
 
   const posterHref = (href: string) => /^(?:[a-z][a-z\d+.-]*:|\/\/)/i.test(href) ? href : asset(href as AssetPath);
 </script>
@@ -27,7 +28,8 @@
           <div class="work-heading">
             <div class="company-logo" aria-hidden="true">
               {#if entry.logo}
-                <img src={asset(entry.logo as AssetPath)} alt="" width="40" height="40" />
+                {@const logo = optimizedImage(entry.logo, 40)}
+                <img src={logo.src} srcset={logo.srcset} sizes="40px" alt="" width="40" height="40" loading="lazy" decoding="async" />
               {:else}
                 <span>{entry.initials}</span>
               {/if}
@@ -64,7 +66,8 @@
             <div class="work-heading">
               <div class="company-logo" aria-hidden="true">
                 {#if entry.logo}
-                  <img src={asset(entry.logo as AssetPath)} alt="" width="40" height="40" />
+                  {@const logo = optimizedImage(entry.logo, 40)}
+                  <img src={logo.src} srcset={logo.srcset} sizes="40px" alt="" width="40" height="40" loading="lazy" decoding="async" />
                 {:else}
                   <span>{entry.initials}</span>
                 {/if}

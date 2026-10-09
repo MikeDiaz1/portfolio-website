@@ -9,3 +9,5 @@ playwright-report/
 .DS_Store
 Thumbs.db
 .verification/
+static/images/optimized/
+src/lib/generated/

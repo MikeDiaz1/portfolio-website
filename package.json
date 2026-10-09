@@ -10,10 +10,14 @@
     "#lib/*": "./src/lib/*"
   },
   "scripts": {
+    "images": "node --experimental-strip-types scripts/optimize-images.mjs",
+    "predev": "npm run images",
     "dev": "vite dev",
+    "prebuild": "npm run images",
     "build": "vite build",
     "preview": "vite preview",
     "prepare": "svelte-kit sync",
+    "precheck": "npm run images",
     "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json"
   },
   "devDependencies": {
@@ -21,6 +25,7 @@
     "@sveltejs/kit": "^3.0.1",
     "@sveltejs/vite-plugin-svelte": "^7.3.1",
     "@types/node": "^24.0.0",
+    "sharp": "^0.35.5",
     "svelte": "^5.57.2",
     "svelte-check": "^4.7.6",
     "typescript": "~6.0.3",

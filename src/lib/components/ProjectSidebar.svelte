@@ -1,8 +1,9 @@
 <script lang="ts">
-  import { asset, resolve } from '$app/paths';
+  import { resolve } from '$app/paths';
   import { page } from '$app/state';
   import { projects, type Project, type ProjectFilter } from '#lib/data/projects.ts';
   import Icon from './Icon.svelte';
+  import { imageSizes, optimizedImage } from '#lib/images.ts';
 
   const filters: ProjectFilter[] = ['Machine Learning', 'Game', 'Web'];
   const groupEmojis: Record<ProjectFilter, string> = { 'Machine Learning': '🔬', Game: '🎮', Web: '🌐' };
@@ -40,9 +41,10 @@
         <p class="project-group">{displayGroup(project)}</p>
       {/if}
       {@const selected = page.params.slug === project.slug || project.aliases?.includes(page.params.slug ?? '')}
+      {@const thumbnail = optimizedImage(project.image, 480)}
       <a class="project-card" data-format={project.format} class:selected href={resolve('/projects/[slug]', { slug: project.slug })} aria-current={selected ? 'page' : undefined}>
         <div class="thumbnail">
-          <img src={asset(project.image)} alt="" width={project.imageWidth} height={project.imageHeight} loading={index < 3 ? 'eager' : 'lazy'} decoding="async" />
+          <img src={thumbnail.src} srcset={thumbnail.srcset} sizes={imageSizes.thumbnail} alt="" width={thumbnail.width ?? project.imageWidth} height={thumbnail.height ?? project.imageHeight} loading="lazy" fetchpriority="low" decoding="async" />
         </div>
         <div class="project-card-copy">
           <div class="project-card-title">

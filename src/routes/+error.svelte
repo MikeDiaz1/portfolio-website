@@ -8,5 +8,5 @@
   <p class="eyebrow">{page.status}</p>
   <h1>{page.status === 404 ? 'A little off the path.' : 'Something went wrong.'}</h1>
   <p>{page.error?.message ?? 'Please try again.'}</p>
-  <a href={resolve('/')}>Back to overview <span aria-hidden="true">→</span></a>
+  <a href={resolve('/')} data-sveltekit-preload-code="eager">Back to overview <span aria-hidden="true">→</span></a>
 </section>

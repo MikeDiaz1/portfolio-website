@@ -62,7 +62,7 @@ export const experience: Experience[] = [
     initials: 'PHC',
     logo: 'images/providencehealthcare_logo.jpg',
     bullets: [
-      'Developed an AI screening framework for pacemaker lead extractions using clinical CT images',
+      'Proposed an AI screening framework for pacemaker lead extractions using clinical CT images',
       'Coordinated work with cardiac surgeons and presented at the UBC Biomedical Engineering Symposium'
     ]
   },

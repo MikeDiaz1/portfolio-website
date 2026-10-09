@@ -3,6 +3,7 @@
   import type { AssetPath } from '$app/types';
   import { profile } from '#lib/data/profile.ts';
   import Icon from './Icon.svelte';
+  import { optimizedImage } from '#lib/images.ts';
 
   function linkDestination(href: string) {
     return /^(https?:|mailto:|tel:)/.test(href) ? href : asset(href as AssetPath);
@@ -10,10 +11,11 @@
 </script>
 
 <header class="profile-header">
-  <a class="identity" href={resolve('/')} aria-label={profile.name + ' — overview'}>
+  <a class="identity" href={resolve('/')} data-sveltekit-preload-code="eager" aria-label={profile.name + ' — overview'}>
     <span class="avatar">
       {#if profile.avatar}
-        <img src={asset(profile.avatar as AssetPath)} alt="" width="82" height="82" />
+        {@const portrait = optimizedImage(profile.avatar, 88)}
+        <img src={portrait.src} srcset={portrait.srcset} sizes="(max-width: 600px) 58px, 88px" alt="" width="88" height="88" decoding="async" />
       {:else}
         <svg viewBox="0 0 82 82" fill="none" aria-hidden="true">
           <circle cx="41" cy="41" r="41" fill="#e7e5e1" />

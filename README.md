@@ -85,6 +85,14 @@ Add or edit entries in the `projects` array. Every entry becomes a sidebar card 
 
 The entries use Michael's project presentation, thesis defence slides, screenshots, and supplied descriptions; see [content and image sources](docs/project-sources.md). All project placeholders have been replaced with supplied content and images. [Artwork notes and original prompts](docs/artwork.md) document the retired illustrative banners.
 
+### Image loading
+
+Keep the original screenshots in `static/` and reference them in the content files. `npm run dev`, `npm run check`, and `npm run build` automatically generate WebP previews with Sharp. Project previews are capped at 480, 960, and 1600 pixels wide; portraits and logos use smaller sizes. The browser selects an appropriate size for the layout and screen density. Sidebar and gallery images load lazily, while the main project image gets priority.
+
+The full-resolution original is loaded only when its image overlay is opened. Image links also support opening the original in a new tab with Ctrl/Cmd-click, and work without JavaScript. Original screenshots are preserved.
+
+Generated files live in `static/images/optimized/` and `src/lib/generated/` and are ignored by Git. Their filenames include a content hash to avoid stale previews after replacing a screenshot. If you change image files or references while the dev server is already running, run `npm run images` or restart the server. Builds always regenerate the manifest automatically; unchanged previews are reused.
+
 ## Deploy to GitHub Pages
 
 The included [GitHub Actions workflow](.github/workflows/deploy.yml) checks the project, builds it, and deploys the `build/` directory.
@@ -123,7 +131,7 @@ Then open the preview URL with `/my-portfolio/` appended. Leave `BASE_PATH` unse
 
 ## How navigation works
 
-The shared layout contains the profile header and project list. SvelteKit renders the selected page in the left main panel. Cards are ordinary links, enhanced with client-side navigation when JavaScript is available.
+The shared layout contains the profile header and project list. SvelteKit renders the selected page in the left main panel. Cards are ordinary links, enhanced with client-side navigation when JavaScript is available. Overview links eagerly preload the home page's code, so returning from a directly opened project does not need to wait for that download after clicking.
 
 `src/routes/+layout.ts` enables prerendering and trailing slashes. The project route's `entries()` function supplies every slug at build time, producing:
 

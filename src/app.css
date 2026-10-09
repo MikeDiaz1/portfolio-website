@@ -56,7 +56,7 @@ img { max-width: 100%; }
 a.profile-link:hover span { text-decoration: underline; text-underline-offset: 5px; }
 .unavailable { cursor: help; opacity: 0.7; }
 .nav-divider { height: 22px; width: 1px; background: var(--line); margin-inline: -4px; }
-.main-content { min-width: 0; min-height: 0; overflow-y: auto; padding: 0 24px 24px 0; scrollbar-width: thin; scrollbar-color: #c4c5c0 transparent; }
+.main-content { min-width: 0; min-height: 0; overflow-y: auto; padding: 0 24px 24px 0; scrollbar-width: thin; scrollbar-color: #c4c5c0 transparent; scrollbar-gutter: stable; }
 .main-content:focus { outline: none; }
 h1 { font-size: 38px; line-height: 1.15; letter-spacing: -1px; }
 
@@ -81,6 +81,7 @@ h1 { font-size: 38px; line-height: 1.15; letter-spacing: -1px; }
 .work-organisation { color: var(--green); font-size: 13px; line-height: 1.45; margin-top: 1px; }
 .work-organisation a { text-decoration: underline; text-underline-offset: 3px; text-decoration-color: #a5bcb1; }
 .employment-type { color: var(--muted); font-size: 12px; }
+.employment-divider { margin-inline: 0.35em; }
 .work-bullets { margin: 6px 0 0 53px; padding: 0 0 0 15px; color: var(--muted); font-size: 13px; line-height: 1.5; }
 .work-bullets li { white-space: pre-line; }
 .work-bullets li + li { margin-top: 3px; }
@@ -100,28 +101,27 @@ h1 { font-size: 38px; line-height: 1.15; letter-spacing: -1px; }
 .project-filter:hover { border-color: var(--green); color: var(--green); }
 .project-filter[aria-pressed='true'] { border-color: var(--green); background: var(--green); color: white; }
 .project-filter:focus-visible { outline: 2px solid var(--green); outline-offset: 3px; }
-.project-list { display: grid; align-content: start; gap: 20px; min-height: 0; overflow-y: auto; margin: 0 0 0 -12px; padding: 14px 10px 24px 12px; scrollbar-width: thin; scrollbar-color: #bdc6cf transparent; scrollbar-gutter: stable; overscroll-behavior-y: contain; }
-.project-group { grid-column: 1 / -1; color: var(--muted); font: 600 10px/1.5 Arial, Helvetica, sans-serif; letter-spacing: 0.9px; text-transform: uppercase; margin-top: 12px; }
+.project-list { display: grid; align-content: start; gap: 15px; min-height: 0; overflow-y: auto; margin: 0 0 0 -12px; padding: 14px 10px 24px 12px; scrollbar-width: thin; scrollbar-color: #bdc6cf transparent; scrollbar-gutter: stable; overscroll-behavior-y: contain; }
+.project-group { grid-column: 1 / -1; color: var(--green); font: 600 14px/1.5 Arial, Helvetica, sans-serif; letter-spacing: 0.9px; text-transform: uppercase; margin-top: 0; }
 .project-group:first-child { margin-top: 0; }
 .project-card { display: block; color: var(--ink); position: relative; }
 .thumbnail { position: relative; height: 124px; overflow: hidden; border: 1px solid #e1e6ec; border-radius: 6px; }
 .thumbnail img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform 280ms ease; }
 .project-card:hover .thumbnail img { transform: scale(1.035); }
-.project-card-copy { min-width: 0; padding-top: 10px; }
+.project-card-copy { min-width: 0; padding-top: 7px; }
 .project-card-title { display: flex; align-items: baseline; justify-content: space-between; gap: 9px; }
-.project-card h3 { font-size: 17px; line-height: 1.3; letter-spacing: -0.4px; }
+.project-card h3 { font-size: 17px; line-height: 1; letter-spacing: -0.4px; }
 .open-project { display: inline-flex; align-items: center; gap: 4px; color: var(--green); font: 12px/1.4 var(--serif); white-space: nowrap; }
 .open-project svg { width: 17px; height: 17px; flex-shrink: 0; transition: transform 180ms ease; }
 .project-card:hover .open-project svg { transform: translateX(3px); }
 .project-card p { color: var(--muted); font-size: 13px; line-height: 1.55; margin-top: 5px; }
-.project-card-tags { display: flex; flex-wrap: wrap; gap: 6px; list-style: none; padding: 0; margin: 12px 0 0; }
+.project-card-tags { display: flex; flex-wrap: wrap; gap: 6px; list-style: none; padding: 0; margin: 5px 0 0; }
 .project-card-tags li { max-width: 100%; color: #4b637e; background: #edf2f7; border-radius: 8px; padding: 5px 8px; font-size: 10px; line-height: 1.4; }
 .project-placeholder-label { display: inline-block; color: var(--muted); font-size: 10px; margin-top: 6px; }
 .project-card.selected .thumbnail { outline: 2px solid var(--green); outline-offset: -2px; }
 .project-card.selected h3 { color: var(--green); }
 .project-card.selected::before { content: ''; position: absolute; left: -10px; top: 0; bottom: 0; width: 2px; background: var(--green); }
 
-.project-detail { animation: appear 220ms ease-out; }
 .project-toolbar { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
 .back-link { display: inline-flex; align-items: center; gap: 5px; font: 12px/1.4 Arial, Helvetica, sans-serif; text-transform: none; letter-spacing: 0; }
 .back-link:hover { text-decoration: underline; text-underline-offset: 4px; }
@@ -186,7 +186,6 @@ html:has(.image-lightbox[open]) { overflow: hidden; }
 .next-title { display: block; font-size: 20px; font-weight: 600; line-height: 1.3; }
 .next-project .eyebrow { margin-bottom: 7px; }
 .error-page p:not(.eyebrow) { margin: 18px 0; color: var(--muted); line-height: 1.6; }
-@keyframes appear { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
 
 @media (min-width: 901px) and (max-width: 1100px) {
   .portfolio-shell { width: calc(100% - 64px); gap: 28px 26px; grid-template-columns: minmax(0, 2.4fr) minmax(260px, 1fr); }
@@ -205,7 +204,7 @@ html:has(.image-lightbox[open]) { overflow: hidden; }
   .profile-links { padding-left: 116px; }
   .main-content { overflow: visible; padding: 0 0 24px; }
   .project-sidebar { margin-top: 8px; padding: 24px 0 40px; border-top: 1px solid var(--line); }
-  .project-list { gap: 22px; overflow: visible; margin: 0; padding: 14px 0 0; scrollbar-gutter: auto; }
+  .project-list { gap: 15px; overflow: visible; margin: 0; padding: 14px 0 0; scrollbar-gutter: auto; }
   .thumbnail { height: auto; aspect-ratio: 3 / 1; }
   .project-card.selected::before { left: -9px; }
 }
@@ -237,7 +236,7 @@ html:has(.image-lightbox[open]) { overflow: hidden; }
   .thumbnail { height: 124px; aspect-ratio: auto; }
   .project-card h3 { font-size: 16px; }
   .project-card p { font-size: 12px; }
-  .project-card-tags { margin-top: 9px; }
+  .project-card-tags { margin-top: 5px; }
   .section-label { font-size: 12px; letter-spacing: 2px; }
   .project-toolbar { flex-wrap: wrap; gap: 6px 16px; }
   .project-toolbar > span { font-size: 10px; }
