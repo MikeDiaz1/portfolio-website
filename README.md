@@ -2,44 +2,53 @@
 
 ![Portfolio preview with work experience, education, publications, and a project sidebar](docs/preview.jpg)
 
-Hello! I built this with **Codex.** The framework is **Svelte 5, SvelteKit 3, and TypeScript**, with fully static output for GitHub Pages.
+Built with **Codex**, using **SvelteKit, Svelte and TypeScript**. Hosted as a static site on GitHub Pages.
 
-## Fork and run locally, feel free to make it your own
+## Run locally
 
-Use Node.js **22.17 or newer**; Node 24 is specified in `.nvmrc`.
+Use **Node.js 24** (see `.nvmrc`).
 
-Clone or download this repository, open a terminal in its folder, then run:
+Clone or download the repository, then run these commands in its folder:
 
 ```sh
 npm ci
 npm run dev
 ```
 
-Open the local URL printed in your terminal.
+Open the URL printed in your terminal.
 
 ```sh
-npm run check    # Svelte and TypeScript diagnostics
-npm run build    # Generate the static site in build/
-npm run preview  # Preview the production build
+npm run check    # Check types and Svelte code
+npm run build    # Build the site
+npm run preview  # Preview the build
 ```
-Content and presentation live in these files:
+
+## Customize
 
 | File | What to change |
 | --- | --- |
-| `src/lib/data/profile.ts` | Name, tagline, profile links, portrait, experience, education, awards, publications, and posters |
-| `src/lib/data/projects.ts` | Project order, slugs, summaries, images, descriptions, topics, resource links |
-| `src/app.css` | Colours, typography, spacing, and responsive layout |
-| `static/` | Images, favicon, and an optional résumé PDF |
+| `src/lib/data/profile.ts` | Profile, experience, education and publications |
+| `src/lib/data/projects.ts` | Projects, images, links and display order |
+| `src/app.css` | Colours, fonts and layout |
+| `static/` | Images, favicon and résumé |
 
-## Deploying to GitHub Pages
+## Deploy to GitHub Pages
 
-The included [GitHub Actions workflow](.github/workflows/deploy.yml) checks the project, builds it, and deploys the `build/` directory.
+The included [workflow](.github/workflows/deploy.yml) checks, builds and deploys the site.
 
-1. Push the project and its lockfile to a GitHub repository with a `main` branch.
-2. In **Settings → Pages → Build and deployment**, select **GitHub Actions** as the source.
-3. Open **Actions → Deploy to GitHub Pages → Run workflow**, or push another commit to `main`.
-4. Open the URL shown by the deployment when it finishes.
+1. Push the repository to GitHub.
+2. In **Settings → Pages**, select **GitHub Actions** as the build source.
+3. Push to `main` or run **Actions → Deploy to GitHub Pages → Run workflow**.
+4. Open the URL shown by the completed deployment.
 
-The workflow reads the base path from GitHub Pages. A project repository works at `https://your-username.github.io/your-repository/`; a `your-username.github.io` repository or configured custom domain works at the root. No repository name is hardcoded in the app.
+The site path is configured automatically. For a custom domain, set it in **Settings → Pages** before deploying.
 
-If your default branch has another name, update the workflow's `on.push.branches` value. Configure a custom domain in the repository's Pages settings before rebuilding.
+If your default branch is not `main`, update `on.push.branches` in the workflow.
+
+## License
+
+The website implementation code is available under the [MIT License](LICENSE). You may reuse, modify and distribute it, including commercially, provided you retain the copyright and license notices.
+
+This license excludes my portfolio text, project descriptions, research materials, images, artwork, screenshots, résumé and other showcased work. This includes content embedded in `src/lib/data/` and media in `static/` and `docs/`. Rights remain with their respective owners; all rights are reserved unless separately stated. No license to any separate project described or linked here is granted. Third-party materials remain subject to their own licenses.
+
+If you use the site as a template, replace the portfolio content and personal assets with your own.
