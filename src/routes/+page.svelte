@@ -4,7 +4,8 @@
   import { experience, education, publications, posterPresentations, profile, type Experience } from '#lib/data/profile.ts';
   import { optimizedImage } from '#lib/images.ts';
 
-  const additionalExperience = experience.slice(2);
+  const visibleExperience = experience.filter((entry) => !entry.additional);
+  const additionalExperience = experience.filter((entry) => entry.additional);
 
   const posterHref = (href: string) => /^(?:[a-z][a-z\d+.-]*:|\/\/)/i.test(href) ? href : asset(href as AssetPath);
 </script>
@@ -56,7 +57,7 @@
   <section aria-labelledby="experience-heading">
     <h2 class="section-label" id="experience-heading">Experience</h2>
     <ol class="work-timeline">
-      {#each experience.slice(0, 2) as entry}
+      {#each visibleExperience as entry}
         {@render workEntry(entry)}
       {/each}
     </ol>
@@ -66,10 +67,10 @@
           <svg class="experience-chevron" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m9 6 6 6-6 6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" /></svg>
           <span>
             <strong>Additional Experience ({additionalExperience.length})</strong>
-            <span class="additional-experience-description">MCAT instruction, pharmacy experience, and earlier software development work</span>
+            <span class="additional-experience-description">MCAT instruction and pharmacy experience</span>
           </span>
         </summary>
-        <ol class="work-timeline" start="3">
+        <ol class="work-timeline" start={visibleExperience.length + 1}>
           {#each additionalExperience as entry}
             {@render workEntry(entry)}
           {/each}

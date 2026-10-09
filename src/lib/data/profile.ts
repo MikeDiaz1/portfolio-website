@@ -8,7 +8,7 @@ export interface ProfileLink {
 export const profile = {
   name: 'Michael Diaz-Stewart',
   tagline: 'Machine learning / Healthcare / Full-stack software',
-  statement: 'Building, evaluating, and improving practical AI systems for healthcare.',
+  statement: 'Building, evaluating, and improving practical machine learning systems',
   // Paths are relative to static/. Leave empty to use the silhouette.
   avatar: 'images/selfie.jpg',
   // Add your real destinations. Empty destinations render as unavailable labels.
@@ -16,11 +16,13 @@ export const profile = {
     { label: 'GitHub', href: 'https://github.com/MikeDiaz1', icon: 'github' },
     { label: 'Kaggle', href: 'https://www.kaggle.com/michaeldiazstewart', icon: 'kaggle' },
     { label: 'LinkedIn', href: 'https://www.linkedin.com/in/michael-diaz-stewart-7547ab271/', icon: 'linkedin' },
+    { label: 'Email', href: 'mailto:diaz-@live.ca' },
     { label: 'Resume', href: 'Michael_Diaz-Stewart_Resume.pdf', download: 'Michael_Diaz-Stewart_Resume.pdf' }
   ] satisfies ProfileLink[]
 };
 
 export interface Experience {
+  additional?: boolean;
   date: string;
   title: string;
   organisation: string;
@@ -43,7 +45,7 @@ export const experience: Experience[] = [
     organisationUrl: 'https://aimlab.ca/',
     employment: 'Permanent full-time',
     location: 'Vancouver, BC, Canada',
-    arrangement: 'Hybird',
+    arrangement: 'Hybrid',
     initials: 'UBC',
     logo: 'images/AIM_logo.jpg',
     bullets: [
@@ -70,6 +72,7 @@ export const experience: Experience[] = [
   {
     date: 'Jun 2022 – Dec 2023',
     title: 'MCAT Instructor',
+    additional: true,
     organisation: 'Kyo Standard',
     organisationUrl: 'https://kyostandard.com/',
     employment: 'Contract part-time',
@@ -84,6 +87,7 @@ export const experience: Experience[] = [
   {
     date: 'Apr 2023 – Jul 2023',
     title: 'Pharmacy Assistant',
+    additional: true,
     organisation: 'CareRx Corporation',
     organisationUrl: 'https://www.carerx.ca/',
     employment: 'Permanent full-time',
@@ -106,7 +110,7 @@ export const experience: Experience[] = [
     initials: 'S',
     logo: 'images/stafits_logo.jpg',
     bullets: [
-      'Full-stack web and mobile applications development in a startup environment'
+      'Developed full-stack web and mobile applications using MongoDB, Express, React and Node.js; deployed backend services on AWS.'
     ]
   }
 ];
@@ -131,7 +135,7 @@ export const education: Education[] = [
     logo: 'images/universityofbc_logo.jpg',
     bullets: [
       'Multi-Scale Multi-Modal Image and Omics Computing for Health Scholarship ($18,000)',
-      'CANTRAIN Clinical Trails Training Program Studentship ($17,500)'
+      'CANTRAIN Clinical Trials Training Program Studentship ($17,500)'
     ]
   },
   {

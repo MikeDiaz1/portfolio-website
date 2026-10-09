@@ -7,7 +7,7 @@
 
   const filters: ProjectFilter[] = ['Machine Learning', 'Game', 'Web'];
   const groupEmojis: Record<ProjectFilter, string> = { 'Machine Learning': '', Game: '', Web: '' };
-  const pinnedSlugs = ['further-down-still', 'medical-image-ai'];
+  const pinnedSlugs = ['medical-image-ai', 'further-down-still'];
   const allProjects = [
     ...pinnedSlugs.flatMap((slug) => projects.filter((project) => project.slug === slug)),
     ...projects.filter((project) => !pinnedSlugs.includes(project.slug))
