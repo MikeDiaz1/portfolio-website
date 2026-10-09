@@ -5,8 +5,36 @@
   import Icon from './Icon.svelte';
   import { optimizedImage } from '#lib/images.ts';
 
+  let downloading = $state(false);
+  let downloadError = $state('');
+
   function linkDestination(href: string) {
     return /^(https?:|mailto:|tel:)/.test(href) ? href : asset(href as AssetPath);
+  }
+
+  async function downloadFile(href: string, filename: string) {
+    if (downloading) return;
+    downloading = true;
+    downloadError = '';
+    try {
+      const response = await fetch(linkDestination(href));
+      if (!response.ok) throw new Error('Download failed');
+      const url = URL.createObjectURL(await response.blob());
+      const download = document.createElement('a');
+      download.href = url;
+      download.download = filename;
+      // Keep this temporary link outside the page's navigation event handlers.
+      download.addEventListener('click', (event) => event.stopPropagation());
+      document.body.append(download);
+      download.click();
+      download.remove();
+      // Allow the browser to consume the blob before releasing it.
+      setTimeout(() => URL.revokeObjectURL(url), 60_000);
+    } catch {
+      downloadError = 'Resume download failed. Please try again.';
+    } finally {
+      downloading = false;
+    }
   }
 </script>
 
@@ -32,8 +60,12 @@
   <nav class="profile-links" aria-label="Profile links">
     {#each profile.links as link, index}
       {#if !link.icon && index > 0 && profile.links[index - 1].icon}<span class="nav-divider" aria-hidden="true"></span>{/if}
-      {#if link.href}
-        <a href={linkDestination(link.href)} download={link.download} class="profile-link" rel={link.href.startsWith('http') ? 'me noopener noreferrer' : undefined}>
+      {#if link.href && link.download}
+        <button type="button" class="profile-link" disabled={downloading} aria-label="Download resume" onclick={() => downloadFile(link.href, link.download!)}>
+          <span>{downloading ? 'Downloading…' : link.label}</span>
+        </button>
+      {:else if link.href}
+        <a href={linkDestination(link.href)} class="profile-link" rel={link.href.startsWith('http') ? 'me noopener noreferrer' : undefined}>
           {#if link.icon}<Icon name={link.icon} size={26} />{/if}
           <span>{link.label}</span>
         </a>
@@ -46,4 +78,5 @@
       {/if}
     {/each}
   </nav>
+  {#if downloadError}<p class="download-error" role="alert">{downloadError}</p>{/if}
 </header>
