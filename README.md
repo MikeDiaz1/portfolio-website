@@ -1,4 +1,4 @@
-# My Portfolio Website
+# Portfolio Website
 
 ![Portfolio preview with work experience, education, publications, and a project sidebar](docs/preview.jpg)
 
